@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="310.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AboutController">
+   <children>
+      <VBox alignment="CENTER" layoutX="50.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/algo.gif" />
+               </image>
+            </ImageView>
+            <VBox>
+               <children>
+                  <HBox alignment="BOTTOM_CENTER">
+                     <children>
+                        <Label text="Algareedy">
+                           <font>
+                              <Font size="45.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="version">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="newVersionBox" alignment="CENTER" spacing="3.0" visible="false">
+                     <children>
+                        <SVGPath content="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#4d4d4d" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" spacing="2.0">
+               <children>
+                  <Hyperlink fx:id="sourceCodeLink" focusTraversable="false" onAction="#browseSourceCode" style="-fx-padding: 0;" text="Source Code" />
+                  <Label text="|" />
+                  <Hyperlink fx:id="licenseLink" focusTraversable="false" onAction="#browseLicense" style="-fx-padding: 0;" text="Open Source License" />
+                  <Label text="|" />
+                  <Hyperlink fx:id="courseLink" focusTraversable="false" onAction="#browseCourse" style="-fx-padding: 0;" text="Course" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="All rights rightly right" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label fx:id="runtime" alignment="CENTER" style="-fx-background-color: #d9d9d9;" textFill="#505050" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font name="Verdana Italic" size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
