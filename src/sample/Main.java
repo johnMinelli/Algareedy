@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.controller.Controller;
 import sample.conf.Configuration;
+import sample.model.Lesson;
+import sample.model.Question;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -20,6 +22,8 @@ public class Main extends Application {
     private static Parent app;
 
     private static Configuration conf;
+
+    private static Lesson[] lessons;
 
     private Controller appController;
 
@@ -33,6 +37,10 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         this.conf = new Configuration();
+        this.lessons = new Lesson[2];
+        lessons[0] = new Lesson("Roba Greedy","Testo",new Question[10]);//Main.getLessons();
+        lessons[1] = new Lesson("More Greedy","Testoso",new Question[10]);//Main.getLessons();
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/Sample.fxml"));
         app = fxmlLoader.load();
@@ -70,6 +78,12 @@ public class Main extends Application {
     }
     public static Configuration getConf() {
         return conf;
+    }
+    public static Lesson getLessons(int i) {
+        return lessons[i];
+    }
+    public static Lesson[] getLessons() {
+        return lessons;
     }
 
     public static void loadQuestions() {

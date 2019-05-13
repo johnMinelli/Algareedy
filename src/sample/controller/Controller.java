@@ -210,7 +210,7 @@ public class Controller {
     private void showSettingsView() {
         toggleNav(navSettingsWin, navSettingsMac);
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("..view/Settings.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Settings.fxml"));
             contentPane.setCenter((AnchorPane)loader.load());
         }catch (IOException io){
             io.printStackTrace();
