@@ -8,12 +8,25 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import sample.controller.Controller;
 import sample.conf.Configuration;
 import sample.model.Lesson;
 import sample.model.Question;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.StringWriter;
 import java.nio.file.Paths;
 
 public class Main extends Application {
@@ -28,19 +41,15 @@ public class Main extends Application {
     private Controller appController;
 
     public static void main(String[] args) {
-        //loadQuestions();
-        //createLessons();
         launch(args);
+
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         this.conf = new Configuration();
-        this.lessons = new Lesson[2];
-        lessons[0] = new Lesson("Roba Greedy","Testo",new Question[10]);//Main.getLessons();
-        lessons[1] = new Lesson("More Greedy","Testoso",new Question[10]);//Main.getLessons();
-
+        loadLessons();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/Sample.fxml"));
         app = fxmlLoader.load();
@@ -86,17 +95,43 @@ public class Main extends Application {
         return lessons;
     }
 
-    public static void loadQuestions() {
+    public static void loadLessons(){
         try {
-            File configFile = Paths.get(System.getProperty("user.dir"), "nomefile.txt").toFile();
-            if (configFile.exists()) {
-                //String configContent = FileUtil.readFile(configFile);
-                //fileClassName = JSONUtil.JSONToObject(configContent, fileClassName.class);
-            } else {
-                //hardcoded questions?
+            File fXmlFile = new File("a.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName("Lezione");
+            lessons = new Lesson[nList.getLength()];
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node nNode = nList.item(i);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    String titolo = eElement.getElementsByTagName("Titolo").item(0).getTextContent();
+                    boolean isXML = (((Element)eElement.getElementsByTagName("Stuff").item(0)).getAttribute("fxml").equals("true"))?true:false;
+                    //TODO - fix here
+                    String stuff = (isXML)?
+                            nodeToString(((Element) eElement.getElementsByTagName("Stuff").item(0)).getElementsByTagName("StackPane").item(0)) :
+                            eElement.getElementsByTagName("Stuff").item(0).getTextContent();
+                    lessons[i] = new Lesson(titolo,stuff,isXML);
+                }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
+    }
+    private static String nodeToString(Node node) {
+        StringWriter sw = new StringWriter();
+        try {
+            Transformer t = TransformerFactory.newInstance().newTransformer();
+            t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            t.setOutputProperty(OutputKeys.INDENT, "yes");
+            t.transform(new DOMSource(node), new StreamResult(sw));
+        } catch (TransformerException te) {
+            System.out.println("nodeToString Transformer Exception");
+        }
+        return sw.toString().replaceAll("(\\t)|(\\r)|(\\n)", "");
     }
 }

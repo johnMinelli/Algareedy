@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<Lezione>
+	<Titolo>Roba Greedy xml</Titolo>
+	<Stuff fxml="true">
+		<StackPane>
+			<children>
+				<HBox alignment="CENTER">
+				   <children>
+					  <Label text="All rights rightly right" />
+				   </children>
+				</HBox>
+			</children>
+		</StackPane>
+	</Stuff>
+</Lezione>
+<Lezione>
+	<Titolo>More Greedy non in xml</Titolo>
+	<Stuff fxml="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit</Stuff>
+</Lezione>
+</root>

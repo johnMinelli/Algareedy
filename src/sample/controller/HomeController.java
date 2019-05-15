@@ -3,14 +3,21 @@ package sample.controller;
 
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.svg.SVGGlyph;
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Element;
+import java.io.File;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -19,16 +26,23 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import sample.Main;
 import sample.model.Lesson;
 import sample.model.Question;
 
 
 import java.awt.*;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
+import org.xml.sax.InputSource;
+
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class HomeController implements Initializable {
 
@@ -40,36 +54,27 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         content.getChildren().clear();
-        Lesson[] lessons = Main.getLessons();
         JFXListView<Label> list = new JFXListView<>();
-        for (int i = 0; i < lessons.length; i++) {
-            list.getItems().add(new Label(ITEM + i +" - "+lessons[i].getTitolo()));
+        for (int i = 0; i < Main.getLessons().length; i++) {
+            list.getItems().add(new Label(ITEM + i +" - "+Main.getLessons(i).getTitolo()));
         }
         list.depthProperty().set(1);
         list.depthProperty().set(1);
         list.setExpanded(true);
 
         content.getChildren().add(list);
-        AnchorPane.setLeftAnchor(list, 20.0);
+        AnchorPane.setLeftAnchor(list, 40.0);
 
 
         list.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-                String title = Main.getLessons(list.getSelectionModel().getSelectedIndices().get(0)).getTitolo();
-                JFXListView<Label> lister = new JFXListView<>();
-                for (int i = 0; i < 100; i++) {
-                    lister.getItems().add(new Label("Item " + i));
-                }
-                lister.getStyleClass().add("mylistview");
-                lister.setMaxHeight(3400);
-
-
-                StackPane container = new StackPane(lister);
-                container.setPadding(new Insets(24));
-
+                Lesson l =  Main.getLessons(list.getSelectionModel().getSelectedIndices().get(0));
+                //open lesson
+                content.getChildren().clear();
                 JFXScrollPane pane = new JFXScrollPane();
-                pane.setContent(container);
-
+                String title = l.getTitolo();
+                Label titleLabel = new Label(title);
+                titleLabel.setStyle("-fx-text-fill:WHITE; -fx-font-size: 40;");
                 JFXButton button = new JFXButton("");
                 SVGGlyph arrow = new SVGGlyph(0,
                         "FULLSCREEN",
@@ -80,29 +85,52 @@ public class HomeController implements Initializable {
                 arrow.setSize(20, 16);
                 button.setGraphic(arrow);
                 button.setRipplerFill(Color.WHITE);
+                pane.getBottomBar().getChildren().add(titleLabel);
                 pane.getTopBar().getChildren().add(button);
-
                 button.setOnMouseClicked(subMouseEvent -> {
                     if (subMouseEvent.getButton() == MouseButton.PRIMARY) {
-                        this.initialize(null,null);
+                        initialize(null, null);
                     }
                 });
+                if(l.isXML()) {
+                    try {
+                        /*
+                        //Node a = readxml();
+                        String fxml = "<StackPane>" +
+                                "<children>" +
+                                "<HBox alignment=\"CENTER\">" +
+                                "<children>" +
+                                "<Label text=\"All rights rightly right\" />" +
+                                "</children>" +
+                                "</HBox>" +
+                                "</children>" +
+                                "</StackPane>";
+                         */
+                        String fxml = l.getStuff();
+                        InputStream targetStream = new ByteArrayInputStream(fxml.getBytes());
+                        FXMLLoader loader = new FXMLLoader();
+                        pane.setContent((StackPane) loader.load(targetStream));
+                    } catch (Exception IO) {
+                        //no
+                    }
+                }else{
+                    JFXDialogLayout layout = new JFXDialogLayout();
+                    layout.setHeading(new Label("Modal Dialog using JFXAlert"));
+                    layout.setBody(new Label(l.getStuff()));
+                    StackPane container = new StackPane(layout);
+                    container.setPadding(new Insets(24));
+                    pane.setContent(container);
+                }
 
-                Label titleLabel = new Label(title);
-                pane.getBottomBar().getChildren().add(titleLabel);
-                titleLabel.setStyle("-fx-text-fill:WHITE; -fx-font-size: 40;");
-                JFXScrollPane.smoothScrolling((ScrollPane) pane.getChildren().get(0));
-                content.getChildren().clear();
+
+
                 content.getChildren().add(pane);
-
-                //try{
-                    //FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Settings.fxml"));
-                    //content.getChildren().add((AnchorPane)loader.load());
-                //}catch (IOException io){
-                    //io.printStackTrace();
-                //}
             }
         });
     }
+
+
+
+
 
 }
