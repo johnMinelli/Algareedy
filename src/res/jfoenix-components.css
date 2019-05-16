@@ -120,7 +120,10 @@ JFXListView.root {
     -fx-pref-width: 200;
     -fx-text-fill: WHITE;
 }
-
+.mylistview {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 /* The main scrollbar **track** CSS class  */
 .mylistview .scroll-bar:horizontal .track,
 .mylistview .scroll-bar:vertical .track {

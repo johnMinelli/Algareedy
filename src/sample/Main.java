@@ -27,7 +27,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.StringWriter;
-import java.nio.file.Paths;
+
+import static sample.conf.Const.*;
 
 public class Main extends Application {
     private static Stage stage;
@@ -42,7 +43,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     @Override
@@ -68,10 +68,8 @@ public class Main extends Application {
         {//not blurred
             //stage.setScene(new Scene(app));
         }
-        stage.setWidth(500);
-        stage.setHeight(500);
-        //stage.setOpacity(1);
-        //stage.setAlwaysOnTop(true);
+        stage.setWidth(PANE_WIDTH);
+        stage.setHeight(PANE_HEIGHT);
         stage.focusedProperty().addListener((observable, oldValue, newValue) -> {
             appController.notifyFocusState(newValue);
         });
@@ -97,7 +95,7 @@ public class Main extends Application {
 
     public static void loadLessons(){
         try {
-            File fXmlFile = new File("a.xml");
+            File fXmlFile = new File(FILENAME);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -111,7 +109,6 @@ public class Main extends Application {
                     Element eElement = (Element) nNode;
                     String titolo = eElement.getElementsByTagName("Titolo").item(0).getTextContent();
                     boolean isXML = (((Element)eElement.getElementsByTagName("Stuff").item(0)).getAttribute("fxml").equals("true"))?true:false;
-                    //TODO - fix here
                     String stuff = (isXML)?
                             nodeToString(((Element) eElement.getElementsByTagName("Stuff").item(0)).getElementsByTagName("StackPane").item(0)) :
                             eElement.getElementsByTagName("Stuff").item(0).getTextContent();

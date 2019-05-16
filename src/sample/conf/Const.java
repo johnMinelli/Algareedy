@@ -13,7 +13,9 @@ import javafx.event.EventType;
  * @author Gio
  */
 public class Const {
-    
+    public static final String FILENAME = "a.xml";
+    public static final int PANE_WIDTH = 500;
+    public static final int PANE_HEIGHT = 500;
     public static final String WIN = "WIN";
     public static final String MAC = "MAC";
     public static final EventType<Event> EVENT_ALL = new EventType<>("EVENT_ALL");

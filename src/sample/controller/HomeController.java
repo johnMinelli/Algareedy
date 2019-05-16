@@ -1,48 +1,28 @@
 package sample.controller;
 
-
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.svg.SVGGlyph;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Element;
-import java.io.File;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import sample.Main;
 import sample.model.Lesson;
 import sample.model.Question;
 
 
-import java.awt.*;
 import java.io.*;
-import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
-import org.xml.sax.InputSource;
-
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 public class HomeController implements Initializable {
 
@@ -58,16 +38,18 @@ public class HomeController implements Initializable {
         for (int i = 0; i < Main.getLessons().length; i++) {
             list.getItems().add(new Label(ITEM + i +" - "+Main.getLessons(i).getTitolo()));
         }
-        list.depthProperty().set(1);
+        list.getStyleClass().add("mylistview");
         list.depthProperty().set(1);
         list.setExpanded(true);
-
-        content.getChildren().add(list);
+        //StackPane.setMargin(pane, new Insets(20, 0, 0, 20));
+        AnchorPane.setTopAnchor(list, 20.0);
         AnchorPane.setLeftAnchor(list, 40.0);
+        AnchorPane.setRightAnchor(list, 40.0);
+        content.getChildren().add(list);
 
 
         list.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+            if (mouseEvent.getButton() == MouseButton.PRIMARY && !list.getSelectionModel().getSelectedIndices().isEmpty()) {
                 Lesson l =  Main.getLessons(list.getSelectionModel().getSelectedIndices().get(0));
                 //open lesson
                 content.getChildren().clear();
@@ -94,36 +76,21 @@ public class HomeController implements Initializable {
                 });
                 if(l.isXML()) {
                     try {
-                        /*
-                        //Node a = readxml();
-                        String fxml = "<StackPane>" +
-                                "<children>" +
-                                "<HBox alignment=\"CENTER\">" +
-                                "<children>" +
-                                "<Label text=\"All rights rightly right\" />" +
-                                "</children>" +
-                                "</HBox>" +
-                                "</children>" +
-                                "</StackPane>";
-                         */
                         String fxml = l.getStuff();
                         InputStream targetStream = new ByteArrayInputStream(fxml.getBytes());
                         FXMLLoader loader = new FXMLLoader();
                         pane.setContent((StackPane) loader.load(targetStream));
                     } catch (Exception IO) {
-                        //no
+                        System.out.println("Lesson XML Transformer Exception");
                     }
                 }else{
                     JFXDialogLayout layout = new JFXDialogLayout();
-                    layout.setHeading(new Label("Modal Dialog using JFXAlert"));
+                    layout.setHeading(new Label("Lesson subtitle"));
                     layout.setBody(new Label(l.getStuff()));
                     StackPane container = new StackPane(layout);
                     container.setPadding(new Insets(24));
                     pane.setContent(container);
                 }
-
-
-
                 content.getChildren().add(pane);
             }
         });
