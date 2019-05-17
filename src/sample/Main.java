@@ -39,6 +39,8 @@ public class Main extends Application {
 
     private static Lesson[] lessons;
 
+    private static int lesson;
+
     private Controller appController;
 
     public static void main(String[] args) {
@@ -86,12 +88,12 @@ public class Main extends Application {
     public static Configuration getConf() {
         return conf;
     }
-    public static Lesson getLessons(int i) {
-        return lessons[i];
-    }
     public static Lesson[] getLessons() {
         return lessons;
     }
+    public static Lesson getLesson(int i) { return lessons[i]; }
+    public static Lesson getLesson() { return lessons[lesson]; }
+    public static void setLesson(int view) { lesson = view; }
 
     public static void loadLessons(){
         try {

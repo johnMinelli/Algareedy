@@ -1,5 +1,6 @@
 package sample.controller;
 
+import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,10 +51,10 @@ public class Controller {
     private VBox sideNav;
 
     @FXML
-    private Region navPluginsMac, navExploreMac, navConsoleMac, navAboutMac, navSettingsMac;
+    private Region navPluginsMac, navLessonMac, navQuizMac, navAboutMac, navSettingsMac;
 
     @FXML
-    private Region navPluginsWin, navExploreWin, navConsoleWin, navAboutWin, navSettingsWin;
+    private Region navPluginsWin, navLessonWin, navQuizWin, navAboutWin, navSettingsWin;
 
     @FXML
     private Label appUpdateAlarmLabelMac;
@@ -187,7 +188,8 @@ public class Controller {
 
     @FXML
     private void showHomeView() {
-      toggleNav(navExploreWin, navExploreMac);
+        switchIconBehaviour(Const.ANY);
+        toggleNav(navPluginsWin, navPluginsWin);
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
             contentPane.setCenter((AnchorPane)loader.load());
@@ -197,7 +199,22 @@ public class Controller {
     }
 
     @FXML
+    private void showLesson() {
+        switchIconBehaviour(Const.QUIZ);
+        toggleNav(navPluginsWin, navPluginsWin);
+        Main.getStage().fireEvent(new Event(getClass(), Main.getStage(), Const.EVENT_OPEN_LESSON));
+    }
+
+    @FXML
+    private void showQuiz() {
+        switchIconBehaviour(Const.LESSON);
+        toggleNav(navPluginsWin, navPluginsWin);
+        Main.getStage().fireEvent(new Event(getClass(), Main.getStage(), Const.EVENT_OPEN_QUIZ));
+    }
+
+    @FXML
     private void showAboutView() {
+        switchIconBehaviour(Const.ANY);
         toggleNav(navAboutWin, navAboutMac);
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/About.fxml"));
@@ -208,6 +225,7 @@ public class Controller {
     }
     @FXML
     private void showSettingsView() {
+        switchIconBehaviour(Const.ANY);
         toggleNav(navSettingsWin, navSettingsMac);
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Settings.fxml"));
@@ -256,7 +274,7 @@ public class Controller {
     }
 
     private void toggleNav(Region targetWin, Region targetMac) {
-        Arrays.asList(navPluginsWin, navExploreWin, navConsoleWin, navAboutWin, navSettingsWin, navPluginsMac, navExploreMac, navConsoleMac, navAboutMac, navSettingsMac).forEach(region -> {
+        Arrays.asList(navPluginsWin, navLessonWin, navQuizWin, navAboutWin, navSettingsWin, navPluginsMac, navLessonMac, navQuizMac, navAboutMac, navSettingsMac).forEach(region -> {
             if (region == targetWin || region == targetMac) {
                 region.setOpacity(1.0);
             } else {
@@ -269,8 +287,10 @@ public class Controller {
         //beaware the function is called two times
         if(event == Const.EVENT_APPLY_THEME){
             applyTheme();
-        }else{
-
+        }else if(event == Const.EVENT_ANY_BEHAVIOUR){
+            switchIconBehaviour(Const.ANY);
+        }else if(event == Const.EVENT_QUIZ_BEHAVIOUR){
+            switchIconBehaviour(Const.QUIZ);
         }
     }
 
@@ -285,6 +305,28 @@ public class Controller {
             body.setLeft(sideArea);
 
             handPaneMac.setVisible(true);
+        }
+    }
+    private void switchIconBehaviour(int opt) {
+        switch (opt){
+            case Const.ANY:
+                navQuizWin.setVisible(false);
+                navQuizMac.setVisible(false);
+                navLessonWin.setVisible(false);
+                navLessonMac.setVisible(false);
+                break;
+            case Const.LESSON:
+                navLessonWin.setVisible(true);
+                navLessonMac.setVisible(true);
+                navQuizWin.setVisible(false);
+                navQuizMac.setVisible(false);
+                break;
+            case Const.QUIZ:
+                navLessonWin.setVisible(false);
+                navLessonMac.setVisible(false);
+                navQuizWin.setVisible(true);
+                navQuizMac.setVisible(true);
+                break;
         }
     }
     public void notifyFocusState(boolean isFocused) {

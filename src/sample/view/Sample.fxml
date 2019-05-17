@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.GlyphsStack?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@../../res/jfoenix.css" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+<AnchorPane style="-fx-background-color: transparent;" stylesheets="@../../res/jfoenix.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
     <children>
         <AnchorPane fx:id="root" minHeight="373.0" minWidth="439.0" prefHeight="443.0" prefWidth="506.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
@@ -51,36 +58,42 @@
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
                                         </Region>
-                                        <Region fx:id="navExploreMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z&quot;; -fx-background-color: #ececec;">
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Region>
-                                        <Region fx:id="navConsoleMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z&quot;; -fx-background-color: #ececec; -fx-scale-x: -1;">
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Region>
-                                        <Region fx:id="navAboutMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" onMouseReleased="#showAboutView" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z&quot;; -fx-background-color: #ececec;">
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Region>
-                                        <Region fx:id="navSettingsMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" onMouseReleased="#showSettingsView" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z&quot;; -fx-background-color: #ececec;">
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Region>
-                                        <Label fx:id="appUpdateAlarmLabelMac" maxHeight="6.0" maxWidth="6.0" minHeight="6.0" minWidth="6.0" style="-fx-background-color: red; -fx-background-radius: 5em;" visible="false">
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Label>
+                              <GlyphsStack>
+                                 <children>
+                                              <Region fx:id="navLessonMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" onMouseReleased="#showLesson" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M575.33 456.43L399 8.02C397.28 3.1 392.61 0 387.65 0c-3.01 0-4.97 1.03-11.49 3.31-6.46 2.26-9.82 8.24-6.27 18.38-16.46 9.69-59.15 24.09-75.5 26.42-1.33-3.78-1.97-6.62-6.4-9.23V32c0-17.67-14.33-32-32-32h-96c-5.96 0-11.22 2.07-16 4.9C139.22 2.07 133.96 0 128 0H32C14.33 0 0 14.33 0 32v448c0 17.67 14.33 32 32 32h96c5.96 0 11.22-2.07 16-4.9 4.78 2.84 10.04 4.9 16 4.9h96c17.67 0 32-14.33 32-32V118.88l151.43 385.1c1.73 4.92 6.4 8.02 11.35 8.02 3 0 4.96-1.03 11.49-3.31 6.44-2.25 9.83-8.23 6.27-18.38 16.46-9.69 59.15-24.09 75.5-26.42 3.65 10.4 10.13 12.65 16.38 10.46l7.55-2.64c6.23-2.19 9.54-9.07 7.36-15.28zM128 480H32v-64h96v64zm0-96H32V128h96v256zm0-288H32V32h96v64zm128 384h-96v-64h96v64zm0-96h-96V128h96v256zm0-288h-96V32h96v64zm203.15 367.54L303.79 74.88c25.22-4.74 64.01-20.33 75.5-26.42l155.36 388.65c-25.23 4.75-64.01 20.33-75.5 26.43z&quot;; -fx-background-color: #ececec;" visible="false">
+                                                  <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                  </cursor>
+                                              </Region>
+                                              <Region fx:id="navQuizMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" onMouseReleased="#showQuiz" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z&quot;; -fx-background-color: #ececec; -fx-scale-x: -1;" visible="false">
+                                                  <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                  </cursor>
+                                              </Region>
+                                 </children>
+                              </GlyphsStack>
                                     </children>
                                     <padding>
                                         <Insets top="20.0" />
                                     </padding>
                                 </VBox>
+                        <VBox fx:id="sideNav2" alignment="TOP_CENTER" prefWidth="67.0" spacing="30.0" style="-fx-background-color: rgb(35, 35, 35);">
+                           <children>
+                              <Region fx:id="navAboutMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" onMouseReleased="#showAboutView" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z&quot;; -fx-background-color: #ececec;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Region>
+                              <Region fx:id="navSettingsMac" maxHeight="18.0" maxWidth="18.0" minHeight="18.0" minWidth="18.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" onMouseReleased="#showSettingsView" opacity="0.75" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z&quot;; -fx-background-color: #ececec;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Region>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
                             </children>
                         </VBox>
                     </left>
@@ -138,12 +151,12 @@
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
                                         </Region>
-                                        <Region fx:id="navExploreWin" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited"  opacity="0.75" prefHeight="20.0" prefWidth="20.0" style="-fx-shape: &quot;M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z&quot;; -fx-background-color: #ececec;">
+                                        <Region fx:id="navLessonWin" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" opacity="0.75" prefHeight="20.0" prefWidth="20.0" style="-fx-shape: &quot;M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z&quot;; -fx-background-color: #ececec;">
                                             <cursor>
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
                                         </Region>
-                                        <Region fx:id="navConsoleWin" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" opacity="0.75" prefHeight="20.0" prefWidth="20.0" style="-fx-shape: &quot;M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z&quot;; -fx-background-color: #ececec; -fx-scale-x: -1;">
+                                        <Region fx:id="navQuizWin" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" onMouseEntered="#eventNavMouseEntered" onMouseExited="#eventNavMouseExited" opacity="0.75" prefHeight="20.0" prefWidth="20.0" style="-fx-shape: &quot;M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z&quot;; -fx-background-color: #ececec; -fx-scale-x: -1;">
                                             <cursor>
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
