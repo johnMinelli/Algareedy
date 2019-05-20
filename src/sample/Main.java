@@ -46,7 +46,8 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
+    //commento di prova per testare il push 
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
