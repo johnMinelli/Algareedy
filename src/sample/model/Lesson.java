@@ -6,10 +6,10 @@ public class Lesson {
     private Question[] quiz;
     private boolean isXML;
 
-    public Lesson(String titolo, String stuff, boolean isXML) {
+    public Lesson(String titolo, String stuff, Question[] quiz, boolean isXML) {
         this.titolo = titolo;
         this.stuff = stuff;
-        //this.quiz = quiz;
+        this.quiz = quiz;
         this.isXML = isXML;
     }
 

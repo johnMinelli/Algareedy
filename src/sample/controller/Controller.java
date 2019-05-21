@@ -189,7 +189,7 @@ public class Controller {
     @FXML
     private void showHomeView() {
         switchIconBehaviour(Const.ANY);
-        toggleNav(navPluginsWin, navPluginsWin);
+        toggleNav(navPluginsWin, navPluginsMac);
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
             contentPane.setCenter((AnchorPane)loader.load());
@@ -201,14 +201,14 @@ public class Controller {
     @FXML
     private void showLesson() {
         switchIconBehaviour(Const.QUIZ);
-        toggleNav(navPluginsWin, navPluginsWin);
+        toggleNav(navPluginsWin, navPluginsMac);
         Main.getStage().fireEvent(new Event(getClass(), Main.getStage(), Const.EVENT_OPEN_LESSON));
     }
 
     @FXML
     private void showQuiz() {
         switchIconBehaviour(Const.LESSON);
-        toggleNav(navPluginsWin, navPluginsWin);
+        toggleNav(navPluginsWin, navPluginsMac);
         Main.getStage().fireEvent(new Event(getClass(), Main.getStage(), Const.EVENT_OPEN_QUIZ));
     }
 

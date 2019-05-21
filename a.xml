@@ -17,5 +17,29 @@
 <Lezione>
 	<Titolo>More Greedy non in xml</Titolo>
 	<Stuff fxml="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit</Stuff>
+	<Algoritmo />
+	<Quiz>
+		<Domanda>
+			<Testo>Are you greedy?</Testo>
+			<Opzione>1</Opzione>
+			<Opzione>2</Opzione>
+			<Opzione corretta="true">3</Opzione>
+			<Opzione>4</Opzione>
+		</Domanda>
+		<Domanda>
+			<Testo>Is this algorithm greedy?</Testo>
+			<Opzione>a</Opzione>
+			<Opzione corretta="true">b</Opzione>
+			<Opzione>c</Opzione>
+			<Opzione>d</Opzione>
+		</Domanda>
+		<Domanda>
+			<Testo>What does greedy means?</Testo>
+			<Opzione>do</Opzione>
+			<Opzione>re</Opzione>
+			<Opzione>mi</Opzione>
+			<Opzione corretta="true">fa</Opzione>
+		</Domanda>
+	</Quiz>
 </Lezione>
 </root>

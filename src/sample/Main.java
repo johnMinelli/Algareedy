@@ -46,8 +46,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    //commento di prova per testare il push 
+
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
@@ -71,8 +70,8 @@ public class Main extends Application {
         {//not blurred
             //stage.setScene(new Scene(app));
         }
-        stage.setWidth(PANE_WIDTH);
-        stage.setHeight(PANE_HEIGHT);
+        stage.setWidth(conf.getWidth());
+        stage.setHeight(conf.getHeight());
         stage.focusedProperty().addListener((observable, oldValue, newValue) -> {
             appController.notifyFocusState(newValue);
         });
@@ -115,7 +114,32 @@ public class Main extends Application {
                     String stuff = (isXML)?
                             nodeToString(((Element) eElement.getElementsByTagName("Stuff").item(0)).getElementsByTagName("StackPane").item(0)) :
                             eElement.getElementsByTagName("Stuff").item(0).getTextContent();
-                    lessons[i] = new Lesson(titolo,stuff,isXML);
+                    if(eElement.getElementsByTagName("Algoritmo").getLength() == 0) System.out.println("Do something here");
+                    //to get questions
+                    NodeList qList = eElement.getElementsByTagName("Domanda");
+                    Question[] quiz = new Question[qList.getLength()];
+                    for (int j = 0; j < qList.getLength(); j++) {
+                        Node qNode = qList.item(j);
+                        if (qNode.getNodeType() == Node.ELEMENT_NODE) {
+                            Element qElement = (Element) qNode;
+                            String text = qElement.getElementsByTagName("Testo").item(0).getTextContent();
+                            NodeList rList = qElement.getElementsByTagName("Opzione");
+                            String[] options = new String[rList.getLength()];
+                            int correct = 0;
+                            for (int k = 0; k < rList.getLength(); k++) {
+                                Node rNode = rList.item(k);
+                                if (rNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    Element rElement = (Element) rNode;
+                                    options[k] = rElement.getTextContent();
+                                    if (rElement.getAttribute("corretta").equals("true")) {
+                                        correct = k;
+                                    }
+                                }
+                            }
+                            quiz[j] = new Question(text, options, correct);
+                        }
+                    }
+                    lessons[i] = new Lesson(titolo, stuff, quiz, isXML);
                 }
             }
         } catch (Exception e) {

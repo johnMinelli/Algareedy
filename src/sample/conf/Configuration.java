@@ -10,10 +10,10 @@ package sample.conf;
  * @author Gio
  */
 public class Configuration {
-    private double width = 500;
-    private double height = 500;
+    private double width = Const.PANE_WIDTH;
+    private double height = Const.PANE_HEIGHT;
     private double opacity = 1.0;
-    private String theme = Const.MAC;
+    private String theme = Const.WIN;
     private boolean alwaysOnTop = false;
     
 
