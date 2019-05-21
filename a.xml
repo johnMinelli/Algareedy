@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <root>
 <Lezione>
-	<Titolo>Roba Greedy xml</Titolo>
+        <Titolo>Roba Greedy xml</Titolo>
 	<Stuff fxml="true">
 		<StackPane>
 			<children>
@@ -41,5 +43,17 @@
 			<Opzione corretta="true">fa</Opzione>
 		</Domanda>
 	</Quiz>
+</Lezione>
+<Lezione>
+    <Titolo> Algoritmo del resto </Titolo>
+    <Stuff fxml="true">
+        <VBox alignment = "CENTER">
+            <children>
+                <Label text = "Algoritmo del resto" alignment = "TOP_CENTER"/>
+                <Pagination fx:id="pagination" pageCount = "10" >
+                </Pagination>
+           </children>
+        </VBox>
+    </Stuff>
 </Lezione>
 </root>
