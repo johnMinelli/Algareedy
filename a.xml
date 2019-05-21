@@ -23,6 +23,7 @@
 	<Quiz>
 		<Domanda>
 			<Testo>Are you greedy?</Testo>
+			<Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
 			<Opzione>1</Opzione>
 			<Opzione>2</Opzione>
 			<Opzione corretta="true">3</Opzione>
@@ -30,6 +31,7 @@
 		</Domanda>
 		<Domanda>
 			<Testo>Is this algorithm greedy?</Testo>
+			<Suggerimento>Non ci siamo ancora</Suggerimento>
 			<Opzione>a</Opzione>
 			<Opzione corretta="true">b</Opzione>
 			<Opzione>c</Opzione>
@@ -37,6 +39,7 @@
 		</Domanda>
 		<Domanda>
 			<Testo>What does greedy means?</Testo>
+			<Suggerimento>Studia la teoria</Suggerimento>
 			<Opzione>do</Opzione>
 			<Opzione>re</Opzione>
 			<Opzione>mi</Opzione>

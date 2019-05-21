@@ -123,6 +123,7 @@ public class Main extends Application {
                         if (qNode.getNodeType() == Node.ELEMENT_NODE) {
                             Element qElement = (Element) qNode;
                             String text = qElement.getElementsByTagName("Testo").item(0).getTextContent();
+                            String hint = qElement.getElementsByTagName("Suggerimento").item(0).getTextContent();
                             NodeList rList = qElement.getElementsByTagName("Opzione");
                             String[] options = new String[rList.getLength()];
                             int correct = 0;
@@ -136,7 +137,7 @@ public class Main extends Application {
                                     }
                                 }
                             }
-                            quiz[j] = new Question(text, options, correct);
+                            quiz[j] = new Question(text, hint, options, correct);
                         }
                     }
                     lessons[i] = new Lesson(titolo, stuff, quiz, isXML);

@@ -14,10 +14,10 @@ import javafx.event.EventType;
  */
 public class Const {
     public static final String FILENAME = "a.xml";
-    public static final int PANE_WIDTH = 550;
+    public static final int PANE_WIDTH = 650;
     public static final int PANE_HEIGHT = 500;
-    public static final int BAR_WIN_WIDTH = 81;
-    public static final int BAR_MAC_WIDTH = 14;
+    public static final int BAR_WIN_WIDTH = 14;
+    public static final int BAR_MAC_WIDTH = 81;
     public static final String WIN = "WIN";
     public static final String MAC = "MAC";
     public static final int ANY = 0;
