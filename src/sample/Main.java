@@ -1,9 +1,11 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -12,10 +14,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import sample.conf.Const;
 import sample.controller.Controller;
 import sample.conf.Configuration;
 import sample.model.Lesson;
 import sample.model.Question;
+import sample.model.Seeker;
+import sample.model.Vector2D;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,6 +32,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import static sample.conf.Const.*;
 
@@ -41,6 +49,8 @@ public class Main extends Application {
 
     private static int lesson;
 
+    private static Seeker[] seekingLabels;
+
     private Controller appController;
 
     public static void main(String[] args) {
@@ -52,13 +62,14 @@ public class Main extends Application {
         this.stage = stage;
         this.conf = new Configuration();
         loadLessons();
+        loadLabels();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/Sample.fxml"));
         app = fxmlLoader.load();
         appController = fxmlLoader.getController();
         appController.initialize();
 
-        stage.setTitle("Algareedy");
+        stage.setTitle(Const.TITLE);
         stage.initStyle(StageStyle.TRANSPARENT);
         {//blur effect
             BorderPane root = new BorderPane();
@@ -78,7 +89,7 @@ public class Main extends Application {
         stage.show();
     }
 
-
+/* Getter and Setter*/
     public static Stage getStage() {
         return stage;
     }
@@ -94,7 +105,32 @@ public class Main extends Application {
     public static Lesson getLesson(int i) { return lessons[i]; }
     public static Lesson getLesson() { return lessons[lesson]; }
     public static void setLesson(int view) { lesson = view; }
+    public static Seeker[] getSeekers() { return seekingLabels; }
+    public static Seeker getSeeker(int i) { return seekingLabels[i]; }
+/*------------------*/
 
+    private void loadLabels() {
+        //add labels
+        seekingLabels = new Seeker[Const.SPRITE_LIST.length];
+        for(int i = 0; i < Const.SPRITE_LIST.length; i++) {
+            // random location
+            Random r = new Random();
+            double x = r.nextDouble() * conf.getWidth()/2+(conf.getWidth()/4);
+            double y = r.nextDouble() * conf.getHeight()/2+(conf.getHeight()/10);
+
+            // dimensions
+            double size = 50*r.nextDouble()+10;
+
+            // create vehicle data
+            Vector2D location = new Vector2D( x,y);
+            Vector2D velocity = new Vector2D( 0,0);
+            Vector2D acceleration = new Vector2D( 0,0);
+
+            // create sprite
+            seekingLabels[i] = new Seeker(Const.SPRITE_LIST[i],location, velocity, acceleration, size);
+        }
+
+    }
     public static void loadLessons(){
         try {
             File fXmlFile = new File(FILENAME);

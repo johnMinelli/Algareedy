@@ -90,7 +90,7 @@ public class HomeController implements Initializable {
         Lesson l = Main.getLesson();
         content.getChildren().clear();
         JFXScrollPane pane = new JFXScrollPane();
-        pane.setPrefWidth(Const.PANE_WIDTH-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
+        pane.setPrefWidth(Main.getConf().getWidth()-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
         String title = l.getTitolo();
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-text-fill:WHITE; -fx-font-size: 30;");

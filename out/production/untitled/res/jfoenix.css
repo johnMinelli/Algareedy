@@ -26,6 +26,10 @@
     -fx-text-fill: rgba(0.0, 0.0, 0.0, 0.87);
 }
 
+.welcome {
+    -fx-background-image: url("welcome_layer.png");
+}
+
 /*******************************************************************************
  *                                                                             *
  * JFX Drawer                                                                  *

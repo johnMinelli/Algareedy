@@ -1,9 +1,11 @@
 package sample.controller;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -16,6 +18,8 @@ import javafx.stage.Stage;
 import sample.conf.Configuration;
 import sample.conf.Const;
 import sample.Main;
+import sample.model.Seeker;
+import sample.model.Vector2D;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -51,10 +55,10 @@ public class Controller {
     private VBox sideNav;
 
     @FXML
-    private Region navPluginsMac, navLessonMac, navQuizMac, navAboutMac, navSettingsMac;
+    private Region navWelcomeMac, navPluginsMac, navLessonMac, navQuizMac, navAboutMac, navSettingsMac;
 
     @FXML
-    private Region navPluginsWin, navLessonWin, navQuizWin, navAboutWin, navSettingsWin;
+    private Region navWelcomeWin, navPluginsWin, navLessonWin, navQuizWin, navAboutWin, navSettingsWin;
 
     @FXML
     private Label appUpdateAlarmLabelMac;
@@ -73,9 +77,16 @@ public class Controller {
 
     Configuration conf;
 
+    private static AnimationTimer gameLoop;
+
+    private Vector2D mouseLocation = new Vector2D( 0, 0);
+
+    private AnchorPane layer;
+
     public void initialize() {
         conf = new Configuration();
         applyTheme();
+        initAnuimation();
         {
             makeDraggable(Main.getStage(), head);
             makeNormalizable(Main.getStage(), head);
@@ -99,6 +110,8 @@ public class Controller {
         }
         //wrapper for all events
         Main.getStage().addEventHandler(Const.EVENT_ALL, event -> {onEvent(event.getEventType());});
+        //show start view
+        showWelcomeView();
     }
 
     private void makeDraggable(final Stage stage, final Node byNode) {
@@ -184,6 +197,12 @@ public class Controller {
             AnchorPane.setTopAnchor(body, 2.0);
             AnchorPane.setBottomAnchor(body, 2.0);
         }
+    }
+
+    @FXML
+    private void showWelcomeView() {
+        toggleNav(navWelcomeWin, navWelcomeMac);
+        contentPane.setCenter((AnchorPane) layer);
     }
 
     @FXML
@@ -339,5 +358,58 @@ public class Controller {
             sideMinimizeButton.setStyle("-fx-background-color: #808080; -fx-background-radius: 5em;");
             sideMaximizeButton.setStyle("-fx-background-color: #808080; -fx-background-radius: 5em;");
         }
+    }
+
+
+    public void initAnuimation(){
+        layer = new AnchorPane();
+        layer.setMinHeight(10);
+        layer.setMinWidth(10);
+        Label title = new Label(Const.TITLE);
+        int fontSize = 50;
+        title.setStyle("-fx-text-fill:BLACK; -fx-font-weight:BOLD; -fx-font-size: "+fontSize+";");
+        StackPane paneTitle = new StackPane(title);
+        StackPane.setAlignment(title, Pos.BOTTOM_CENTER);
+        layer.getChildren().add(paneTitle);
+        paneTitle.setMinWidth(Main.getConf().getWidth()-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
+        AnchorPane.setBottomAnchor(paneTitle, 20.0);
+        AnchorPane.setLeftAnchor(paneTitle, 40.0);
+        AnchorPane.setRightAnchor(paneTitle, 40.0);
+        //AnchorPane.setLeftAnchor(title, (Main.getConf().getWidth()/2)-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH)-(fontSize*5/2));
+        layer.getStyleClass().add("welcome");
+
+        Seeker[] seekingLabels = Main.getSeekers();
+        for(int i = 0; i < seekingLabels.length; i++) {
+            layer.getChildren().add(seekingLabels[i]);
+            seekingLabels[i].display();
+        }
+        // capture mouse position
+        layer.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+            mouseLocation.set(e.getX(), e.getY());
+            gameLoop.start();
+        });
+        layer.addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> {
+            double offsetX = e.getX() - mouseLocation.x;
+            double offsetY = e.getY() - mouseLocation.y;
+            mouseLocation.x+=offsetX;
+            mouseLocation.y+=offsetY;
+
+            mouseLocation.set(e.getX(), e.getY());
+        });
+        layer.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> {
+            gameLoop.stop();
+        });
+        //animation
+        gameLoop = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                for(int i = 0; i < seekingLabels.length; i++) {
+                    seekingLabels[i].seek(mouseLocation);   // seek mouse location, apply force to get towards it
+                    seekingLabels[i].move();                // move sprite
+                    seekingLabels[i].display();             // update in fx scene
+                }
+            }
+        };
+
     }
 }
