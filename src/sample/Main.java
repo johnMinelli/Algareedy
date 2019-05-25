@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Random;
 
 import static sample.conf.Const.*;
+import sample.model.ChangeMakingCode;
 
 public class Main extends Application {
     private static Stage stage;
@@ -151,7 +152,8 @@ public class Main extends Application {
                             nodeToString(((Element) eElement.getElementsByTagName("Stuff").item(0)).getElementsByTagName("StackPane").item(0)) :
                             eElement.getElementsByTagName("Stuff").item(0).getTextContent();
                     if(eElement.getElementsByTagName("Algoritmo").getLength() == 0) System.out.println("Do something here");
-                    //to get questions
+                    //ChangeMakingCode cmc = new ChangeMakingCode();
+                    //cmc.changeMaking(75);
                     NodeList qList = eElement.getElementsByTagName("Domanda");
                     Question[] quiz = new Question[qList.getLength()];
                     for (int j = 0; j < qList.getLength(); j++) {
