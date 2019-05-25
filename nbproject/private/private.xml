@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/model/Lesson.java</file>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/controller/HomeController.java</file>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/Main.java</file>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/model/ChangeMakingCode.java</file>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/controller/ChangeMakingController.java</file>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/view/ChangeMaking.fxml</file>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/view/Sample.fxml</file>
+            <file>file:/home/liam/NetBeansProjects/Algareedy/src/sample/controller/Controller.java</file>
+        </group>
     </open-files>
 </project-private>
