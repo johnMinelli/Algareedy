@@ -143,15 +143,19 @@ public class Main extends Application {
             NodeList nList = doc.getElementsByTagName("Lezione");
             lessons = new Lesson[nList.getLength()];
             for (int i = 0; i < nList.getLength(); i++) {
-                Node nNode = nList.item(i);
+                Node nNode = nList.item (i);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     String titolo = eElement.getElementsByTagName("Titolo").item(0).getTextContent();
+                    String algoritmo = "";
                     boolean isXML = (((Element)eElement.getElementsByTagName("Stuff").item(0)).getAttribute("fxml").equals("true"))?true:false;
                     String stuff = (isXML)?
                             nodeToString(((Element) eElement.getElementsByTagName("Stuff").item(0)).getElementsByTagName("StackPane").item(0)) :
                             eElement.getElementsByTagName("Stuff").item(0).getTextContent();
-                    if(eElement.getElementsByTagName("Algoritmo").getLength() == 0) System.out.println("Do something here");
+                    if(eElement.getElementsByTagName("Algoritmo").getLength() != 0){
+                        algoritmo = ((Element)eElement.getElementsByTagName("Algoritmo").item(0)).getAttribute("type");
+                        System.out.println("Do something here");
+                    }
                     //ChangeMakingCode cmc = new ChangeMakingCode();
                     //cmc.changeMaking(75);
                     NodeList qList = eElement.getElementsByTagName("Domanda");
@@ -178,7 +182,7 @@ public class Main extends Application {
                             quiz[j] = new Question(text, hint, options, correct);
                         }
                     }
-                    lessons[i] = new Lesson(titolo, stuff, quiz, isXML);
+                    lessons[i] = new Lesson(titolo, stuff, quiz, isXML, algoritmo);
                 }
             }
         } catch (Exception e) {

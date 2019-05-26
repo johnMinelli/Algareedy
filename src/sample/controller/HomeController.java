@@ -1,4 +1,4 @@
-package sample.controller;
+    package sample.controller;
 
 import com.jfoenix.animation.alert.JFXAlertAnimation;
 import com.jfoenix.controls.*;
@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HomeController implements Initializable {
 
@@ -89,43 +91,64 @@ public class HomeController implements Initializable {
     public void openLesson() {
         Lesson l = Main.getLesson();
         content.getChildren().clear();
-        JFXScrollPane pane = new JFXScrollPane();
-        pane.setPrefWidth(Main.getConf().getWidth()-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
-        String title = l.getTitolo();
-        Label titleLabel = new Label(title);
-        titleLabel.setStyle("-fx-text-fill:WHITE; -fx-font-size: 30;");
-        JFXButton button = new JFXButton("");
-        SVGGlyph arrow = new SVGGlyph(0, "back", pathBack, Color.WHITE);
-        arrow.setSize(20, 16);
-        button.setGraphic(arrow);
-        button.setRipplerFill(Color.WHITE);
-        pane.getBottomBar().getChildren().add(titleLabel);
-        pane.getTopBar().getChildren().add(button);
-        pane.getTopBar().setAlignment(Pos.TOP_RIGHT);
-        button.setOnMouseClicked(subMouseEvent -> {
-            if (subMouseEvent.getButton() == MouseButton.PRIMARY) {
-                Main.getStage().fireEvent(new Event(getClass(), Main.getStage(), Const.EVENT_ANY_BEHAVIOUR));
-                initialize(null, null);
+        if(!l.hasAlgorithm()){
+            JFXScrollPane pane = new JFXScrollPane();
+            pane.setPrefWidth(Main.getConf().getWidth()-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
+            String title = l.getTitolo();
+            Label titleLabel = new Label(title);
+            titleLabel.setStyle("-fx-text-fill:WHITE; -fx-font-size: 30;");
+            JFXButton button = new JFXButton("");
+            SVGGlyph arrow = new SVGGlyph(0, "back", pathBack, Color.WHITE);
+            arrow.setSize(20, 16);
+            button.setGraphic(arrow);
+            button.setRipplerFill(Color.WHITE);
+            pane.getBottomBar().getChildren().add(titleLabel);
+            pane.getTopBar().getChildren().add(button);
+            pane.getTopBar().setAlignment(Pos.TOP_RIGHT);
+            button.setOnMouseClicked(subMouseEvent -> {
+                if (subMouseEvent.getButton() == MouseButton.PRIMARY) {
+                    Main.getStage().fireEvent(new Event(getClass(), Main.getStage(), Const.EVENT_ANY_BEHAVIOUR));
+                    initialize(null, null);
+                }
+            });
+            if (l.isXML()) {
+                try {
+                    String fxml = l.getStuff();
+                    InputStream targetStream = new ByteArrayInputStream(fxml.getBytes());
+                    FXMLLoader loader = new FXMLLoader();
+                    pane.setContent((StackPane) loader.load(targetStream));
+                } catch (Exception IO) {
+                    System.out.println("Lesson XML Transformer Exception");
+                }
+            } else {
+                JFXDialogLayout layout = new JFXDialogLayout();
+                layout.setHeading(new Label("Lesson subtitle"));
+                layout.setBody(new Label(l.getStuff()));
+                StackPane container = new StackPane(layout);
+                container.setPadding(new Insets(24));
+                pane.setContent(container);
             }
-        });
-        if (l.isXML()) {
-            try {
-                String fxml = l.getStuff();
-                InputStream targetStream = new ByteArrayInputStream(fxml.getBytes());
-                FXMLLoader loader = new FXMLLoader();
-                pane.setContent((StackPane) loader.load(targetStream));
-            } catch (Exception IO) {
-                System.out.println("Lesson XML Transformer Exception");
+            content.getChildren().add(pane);
+        }else{
+            if(l.getAlgorithm().equals("change")) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking.fxml"));
+                try {
+                    content.getChildren().add((AnchorPane)loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        } else {
-            JFXDialogLayout layout = new JFXDialogLayout();
-            layout.setHeading(new Label("Lesson subtitle"));
-            layout.setBody(new Label(l.getStuff()));
-            StackPane container = new StackPane(layout);
-            container.setPadding(new Insets(24));
-            pane.setContent(container);
+            else {
+                /*
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking.fxml"));
+                try {
+                    content.getChildren().add((AnchorPane)loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                */
+            }
         }
-        content.getChildren().add(pane);
     }
 
     public void openQuiz() {

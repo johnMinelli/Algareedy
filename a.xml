@@ -17,7 +17,6 @@
 <Lezione>
 	<Titolo>More Greedy non in xml</Titolo>
 	<Stuff fxml="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit</Stuff>
-	<Algoritmo />
 	<Quiz>
 		<Domanda>
 			<Testo>Are you greedy?</Testo>
@@ -47,14 +46,8 @@
 </Lezione>
 <Lezione>
     <Titolo> Algoritmo del resto </Titolo>
-    <Stuff fxml="true">
-        <VBox alignment = "CENTER">
-            <children>
-                <Label text = "Algoritmo del resto" alignment = "TOP_CENTER"/>
-                <Pagination fx:id="pagination" pageCount = "10" >
-                </Pagination>
-           </children>
-        </VBox>
-    </Stuff>
+    <Algoritmo type="change"/>
+    <Stuff fxml="false" />
+    <Quiz></Quiz>
 </Lezione>
 </root>
