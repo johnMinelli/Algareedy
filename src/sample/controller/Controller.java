@@ -86,7 +86,7 @@ public class Controller {
     public void initialize() {
         conf = new Configuration();
         applyTheme();
-        initAnuimation();
+        initAnimation();
         {
             makeDraggable(Main.getStage(), head);
             makeNormalizable(Main.getStage(), head);
@@ -361,7 +361,7 @@ public class Controller {
     }
 
 
-    public void initAnuimation(){
+    public void initAnimation(){
         layer = new AnchorPane();
         layer.setMinHeight(10);
         layer.setMinWidth(10);
