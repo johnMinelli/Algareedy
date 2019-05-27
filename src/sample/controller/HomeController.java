@@ -131,7 +131,7 @@ public class HomeController implements Initializable {
             content.getChildren().add(pane);
         }else{
             if(l.getAlgorithm().equals("change")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking1.fxml"));
                 try {
                     content.getChildren().add((AnchorPane)loader.load());
                 } catch (IOException ex) {
