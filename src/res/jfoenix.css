@@ -70,6 +70,7 @@
     -fx-padding: 0.7em 0.8em;
 }
 
+
 /*******************************************************************************
  *                                                                             *
  * JFX Pop Up                                                                  *
@@ -457,6 +458,11 @@
     -jfx-expanded: false;
 }
 
+.sublist .jfx-list-view {
+    -jfx-cell-vertical-margin: 0;
+    -jfx-vertical-gap: 0;
+}
+
 .custom-jfx-list-view .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
 .custom-jfx-list-view .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
     -fx-background-color: rgba(255, 0, 0, 0.2);
@@ -534,12 +540,8 @@
     -fx-background-color: TRANSPARENT;
 }
 
-.sublist .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
-.sublist .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
-    -fx-background-color: rgba(255, 0, 0, 0.2);
-}
-
 .sublist .jfx-list-cell {
+    -fx-padding: 3 0 3 0;
     -fx-background-insets: 0.0;
     -fx-text-fill: BLACK;
 }
@@ -548,8 +550,13 @@
     -fx-alignment: center-left;
 }
 
-.sublist-header .sub-label {
-    -fx-padding: 0 0 0 12;
+.sublist Label {
+    -fx-padding: 0 0 0 6;
+}
+
+.inline{
+    -fx-font-size: 16px;
+    -fx-padding: 0 32 0 32;
 }
 
 /*.custom-jfx-list-view .sublist-container {
@@ -970,6 +977,8 @@
 .scroll-pane {
     -fx-background-insets: 0;
     -fx-padding: 0;
+    -fx-text-alignment: justify;
+    -fx-max-height: 1120.0;
 }
 
 .scroll-pane:focused {
@@ -1014,14 +1023,17 @@
 
 .jfx-scroll-pane .main-header {
     -fx-background-image: url("bg1.jpg");
+    -fx-background-size: cover;
 }
 
 .jfx-scroll-pane .condensed-header {
     -fx-background-image: url("bg4.jpg");
+    -fx-background-size: cover;
 }
 
 /*******************************************************************************
 *                                                                              *
+* Pickers                                                                      *
 * Pickers                                                                      *
 *                                                                              *
 *******************************************************************************/

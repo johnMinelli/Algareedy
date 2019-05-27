@@ -3,10 +3,6 @@
 import com.jfoenix.animation.alert.JFXAlertAnimation;
 import com.jfoenix.controls.*;
 import com.jfoenix.svg.SVGGlyph;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -14,19 +10,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
-import javafx.util.Duration;
 import sample.Main;
 import sample.conf.Const;
 import sample.model.Lesson;
@@ -35,10 +26,7 @@ import sample.model.Question;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -62,14 +50,14 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         content.getChildren().clear();
         quiz=0;
+        answered = -1;
         JFXListView<Label> list = new JFXListView<>();
         for (int i = 0; i < Main.getLessons().length; i++) {
-            list.getItems().add(new Label(ITEM + i + " - " + Main.getLesson(i).getTitolo()));
+            list.getItems().add(new Label(ITEM + i + " - " + Main.getLesson(i).getTitle()));
         }
         list.getStyleClass().add("mylistview");
         list.depthProperty().set(1);
         list.setExpanded(true);
-        //StackPane.setMargin(pane, new Insets(20, 0, 0, 20));
         AnchorPane.setTopAnchor(list, 20.0);
         AnchorPane.setLeftAnchor(list, 40.0);
         AnchorPane.setRightAnchor(list, 40.0);
@@ -93,8 +81,8 @@ public class HomeController implements Initializable {
         content.getChildren().clear();
         if(!l.hasAlgorithm()){
             JFXScrollPane pane = new JFXScrollPane();
-            pane.setPrefWidth(Main.getConf().getWidth()-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
-            String title = l.getTitolo();
+            //pane.setPrefWidth(Main.getConf().getWidth()-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
+            String title = l.getTitle();
             Label titleLabel = new Label(title);
             titleLabel.setStyle("-fx-text-fill:WHITE; -fx-font-size: 30;");
             JFXButton button = new JFXButton("");
@@ -113,7 +101,7 @@ public class HomeController implements Initializable {
             });
             if (l.isXML()) {
                 try {
-                    String fxml = l.getStuff();
+                    String fxml = l.getTheory();
                     InputStream targetStream = new ByteArrayInputStream(fxml.getBytes());
                     FXMLLoader loader = new FXMLLoader();
                     pane.setContent((StackPane) loader.load(targetStream));
@@ -122,13 +110,14 @@ public class HomeController implements Initializable {
                 }
             } else {
                 JFXDialogLayout layout = new JFXDialogLayout();
-                layout.setHeading(new Label("Lesson subtitle"));
-                layout.setBody(new Label(l.getStuff()));
+                layout.setHeading(new Label(l.getSubtitle()));
+                layout.setBody(new Label(l.getTheory()));
                 StackPane container = new StackPane(layout);
                 container.setPadding(new Insets(24));
                 pane.setContent(container);
             }
             content.getChildren().add(pane);
+            AnchorPane.setLeftAnchor(pane,0.0);AnchorPane.setRightAnchor(pane,0.0);AnchorPane.setBottomAnchor(pane,0.0);
         }else{
             if(l.getAlgorithm().equals("change")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking1.fxml"));
@@ -138,16 +127,6 @@ public class HomeController implements Initializable {
                     Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            else {
-                /*
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking.fxml"));
-                try {
-                    content.getChildren().add((AnchorPane)loader.load());
-                } catch (IOException ex) {
-                    Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                */
-            }
         }
     }
 
@@ -156,7 +135,7 @@ public class HomeController implements Initializable {
         content.getChildren().clear();
         //setting head layout
         JFXDialogLayout layout = new JFXDialogLayout();
-        String title = l.getTitolo();
+        String title = l.getTitle();
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-text-fill:BLACK; -fx-font-size: 30;");
         JFXButton refreshBtn = new JFXButton("");
@@ -255,7 +234,7 @@ public class HomeController implements Initializable {
             nextBtn.setGraphic(endG);
             nextBtn.setOnMouseClicked(subMouseEvent -> {
                 if (subMouseEvent.getButton() == MouseButton.PRIMARY) {
-                    //torna al menu
+                    initialize(null,null);
                 }
             });
             Label endLabel = new Label("Test di autocomprensione terminato");

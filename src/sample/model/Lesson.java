@@ -1,33 +1,43 @@
 package sample.model;
 
 public class Lesson {
-    private String titolo;
-    private String stuff;
+    private String title;
+    private String subtitle;
+    private String theory;
     private Question[] quiz;
     private boolean isXML;
     private String algorithm;
 
-    public Lesson(String titolo, String stuff, Question[] quiz, boolean isXML, String algorithm) {
-        this.titolo = titolo;
-        this.stuff = stuff;
+    public Lesson(String title, String subtitle, String theory, Question[] quiz, boolean isXML, String algorithm) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.theory = theory;
         this.quiz = quiz;
         this.isXML = isXML;
         this.algorithm = algorithm;
     }
 
-    public String getTitolo() {
-        return titolo;
+    public String getTitle() {
+        return title;
     }
 
-    public String getStuff() {
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public String getTheory() {
         if(isXML){
             return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     "<?import javafx.scene.layout.StackPane?>" +
-                    "<?import javafx.scene.layout.HBox?>" +
+                    "<?import javafx.scene.layout.VBox?>" +
                     "<?import javafx.scene.control.Label?>" +
-                    stuff;
+                    "<?import com.jfoenix.controls.*?>" +
+                    "<?import com.jfoenix.controls.JFXListView?>" +
+                    "<?import javafx.geometry.Insets?>" +
+                    "<?import javafx.scene.layout.*?>" +
+                    theory;
         }else{
-            return stuff;
+            return theory;
         }
 
     }
@@ -41,7 +51,7 @@ public class Lesson {
     }
     
     public boolean hasAlgorithm() {
-        return !this.algorithm.equals("");
+        return !algorithm.equals("");
     }
 
     public String getAlgorithm() {
