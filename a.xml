@@ -1,120 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-<Lezione>
-	<Titolo>Introduzione alle tecniche greedy</Titolo>
-	<Sottotitolo>Perche greedy? Perche no?</Sottotitolo>
-	<Teoria fxml="false">Nella vita di tutti i giorni, spesso si adottano strategie che danno immediatamente buoni risultati, ma che a lungo andare si rivelano scadenti. È questa la strategia dell'ingordo (o "greedy").
-
-Il metodo greedy si può applicare a quei problemi di ottimizzazione in cui occorre selezionare un sottoinsieme S "ottimo" di oggetti, che verificano certe proprietà, da un insieme di n, oggetti.
-Un algoritmo greedy ordina dapprima gli oggetti in base ad un criterio di "appetibilità". La soluzione del problema è poi costruita in modo incrementale considerando gli oggetti uno alla volta e aggiungendo ogni volta l'oggetto più appetibile, se possibile. Fatta la scelta, è successivamente risolto un sottoproblema dello stesso tipo ma di dimensione più piccola.
-Il problema più piccolo dipende dalla sequenza di scelte passate, ma non dalle scelte future, per questo non è detto che la soluzione finale sia "ottima". Affinché un algoritmo greedy fornisca la soluzione "ottima" di un problema, occorre che siano verificate due proprietà:
-	1. Scelta greedy. Dopo aver fornito una caratterizzazione matematica della soluzione ottima, occorre dimostrare che tale soluzione può essere modificata in modo da utilizzare una prima scelta "greedy", che riduce il problema ad un sottoproble­ma più piccolo dello stesso tipo, e poi mostrare per induzione che il procedimento può essere esteso ad una sequenza di scelte "greedy";
-	2. Sottostruttura ottima. Per mostrare che una scelta "greedy" riduce il problema ad un sottoproblema più piccolo dello stesso tipo, occorre dimostrare che una soluzione ottima del problema contiene al suo interno le soluzioni ottime dei sottoproblemi.
-
-Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsiasi problema di ottimizzazione. Nelle lezioni successive potrai osservere degli esempi di problemi per i quali la tecnica greedy si comporta bene.
-	</Teoria>
-	<Quiz></Quiz>
-</Lezione>
-<Lezione>
-	<Titolo>Approccio alla programmazione Greedy</Titolo>
-	<Teoria fxml="true">
-		<StackPane>
-			<children>
-				<VBox alignment="CENTER">
-						<JFXDialogLayout styleClass="sublist">
-							<heading>
-								<Label>Iniziamo con programmazione dinamica</Label>
-							</heading>
-							<body>
-								<JFXListView>
-									<Label>1. Individuiamo una sottostruttura ottima</Label>
-									<Label>2. Scriviamo una definizione ricorsiva per la dimensione della soluzione ottima</Label>
-									<Label>3. Scriviamo una versione iterativa bottom-up dell’algoritmo</Label>
-									<Label>(Passiamo poi alla tecnica greedy)</Label>
-									<Label>4. Cerchiamo una possibile scelta ingorda</Label>
-									<Label>5. Dimostriamo che la scelta ingorda porta alla soluzione ottima</Label>
-									<Label>6. Scriviamo un algoritmo ricorsivo o iterativo che effettua sempre la scelta ingorda</Label>
-								</JFXListView>
-							</body>
-						</JFXDialogLayout>
-						<Label styleClass="inline">Spesso non è necessario analizzare tutti i possibili valori di un problema. Faccio una scelta "ingorda", ma sicura: seleziono l’entità maggiore/minore ed elimino tutte le attività che non sono compatibili con la scelta ingorda.</Label>
-						<JFXDialogLayout styleClass="sublist">
-							<heading>
-								<Label>Approccio greedy, senza programmazione dinamica</Label>
-							</heading>
-							<body>
-								<JFXListView>
-									<JFXListView>
-										<groupnode>
-											<Label>1. Evidenziare i "passi di decisione"</Label>
-										</groupnode>
-										<Label styleClass="sub-label">Trasformare il problema di ottimizzazione in un problema di "scelte" successive</Label>
-									</JFXListView>
-									<JFXListView>
-										<groupnode>
-											<Label>2. Evidenziare una possibile scelta ingorda</Label>
-										</groupnode>
-										<Label styleClass="sub-label">Dimostrare che tale scelta rispetto il "principio della scelta ingorda"</Label>
-									</JFXListView>
-									<JFXListView>
-										<groupnode>
-											<Label>3. Evidenziare la sottostruttura ottima</Label>
-										</groupnode>
-										<Label styleClass="sub-label">Dimostrare che la soluzione ottima "residua" possa essere riunita alla scelta ingorda</Label>
-									</JFXListView>
-									<JFXListView>
-										<groupnode>
-											<Label>4. Scrittura codice: top-down, anche in maniera iterativa</Label>
-										</groupnode>
-										<Label styleClass="sub-label">Nota: può essere necessario pre-processare l’input</Label>
-									</JFXListView>
-								</JFXListView>
-							</body>
-						</JFXDialogLayout>
-				</VBox>
-			</children>
-		</StackPane>
-	</Teoria>
-	<Quiz>
-		<Domanda>
-			<Testo>Are you greedy?</Testo>
-			<Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
-			<Opzione>1</Opzione>
-			<Opzione>2</Opzione>
-			<Opzione corretta="true">3</Opzione>
-			<Opzione>4</Opzione>
-		</Domanda>
-		<Domanda>
-			<Testo>Is this algorithm greedy?</Testo>
-			<Suggerimento>Non ci siamo ancora</Suggerimento>
-			<Opzione>a</Opzione>
-			<Opzione corretta="true">b</Opzione>
-			<Opzione>c</Opzione>
-			<Opzione>d</Opzione>
-		</Domanda>
-		<Domanda>
-			<Testo>What does greedy means?</Testo>
-			<Suggerimento>Studia la teoria</Suggerimento>
-			<Opzione>do</Opzione>
-			<Opzione>re</Opzione>
-			<Opzione>mi</Opzione>
-			<Opzione corretta="true">fa</Opzione>
-		</Domanda>
-	</Quiz>
-</Lezione>
-<Lezione>
-    <Titolo> Algoritmo del resto </Titolo>
-    <Algoritmo type="change"/>
-    <Teoria fxml="false" />
-    <Quiz>
-		<Domanda>
-			<Testo>What does greedy means?</Testo>
-			<Suggerimento>Studia la teoria</Suggerimento>
-			<Opzione>do</Opzione>
-			<Opzione>re</Opzione>
-			<Opzione>mi</Opzione>
-			<Opzione corretta="true">fa</Opzione>
-		</Domanda>
-	</Quiz>
-</Lezione>
+    <Lezione>
+        <Titolo>Roba Greedy xml</Titolo>
+        <Stuff fxml="true">
+            <StackPane>
+                <children>
+                    <HBox alignment="CENTER">
+                        <children>
+                            <Label text="All rights rightly right" />
+                        </children>
+                    </HBox>
+                </children>
+            </StackPane>
+        </Stuff>
+    </Lezione>
+    <Lezione>
+        <Titolo>More Greedy non in xml</Titolo>
+        <Stuff fxml="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit</Stuff>
+        <Quiz>
+            <Domanda>
+                <Testo>Are you greedy?</Testo>
+                <Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
+                <Opzione>1</Opzione>
+                <Opzione>2</Opzione>
+                <Opzione corretta="true">3</Opzione>
+                <Opzione>4</Opzione>
+            </Domanda>
+            <Domanda>
+                <Testo>Is this algorithm greedy?</Testo>
+                <Suggerimento>Non ci siamo ancora</Suggerimento>
+                <Opzione>a</Opzione>
+                <Opzione corretta="true">b</Opzione>
+                <Opzione>c</Opzione>
+                <Opzione>d</Opzione>
+            </Domanda>
+            <Domanda>
+                <Testo>What does greedy means?</Testo>
+                <Suggerimento>Studia la teoria</Suggerimento>
+                <Opzione>do</Opzione>
+                <Opzione>re</Opzione>
+                <Opzione>mi</Opzione>
+                <Opzione corretta="true">fa</Opzione>
+            </Domanda>
+        </Quiz>
+    </Lezione>
+    <Lezione>
+        <Titolo> Algoritmo del resto </Titolo>
+        <Algoritmo type="change"/>
+        <Stuff fxml="false" />
+        <Quiz><Domanda>
+            <Testo>Are you greedy?</Testo>
+            <Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
+            <Opzione>1</Opzione>
+            <Opzione>2</Opzione>
+            <Opzione corretta="true">3</Opzione>
+            <Opzione>4</Opzione>
+        </Domanda></Quiz>
+    </Lezione>
+    <Lezione>
+        <Titolo> Algoritmo dello zaino </Titolo>
+        <Algoritmo type ="knapsack"/>
+        <Stuff fxml="false"/>
+        <Quiz><Domanda>
+            <Testo>Are you greedy?</Testo>
+            <Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
+            <Opzione>1</Opzione>
+            <Opzione>2</Opzione>
+            <Opzione corretta="true">3</Opzione>
+            <Opzione>4</Opzione>
+        </Domanda></Quiz>
+    </Lezione>
 </root>

@@ -14,7 +14,7 @@ import javafx.event.EventType;
  */
 public class Const {
     public static final String TITLE = "Algareedy";
-    public static final String FILENAME = "a.xml";
+    public static final String FILENAME = "lessons.xml";
     public static final int PANE_WIDTH = 800;
     public static final int PANE_HEIGHT = 500;
     public static final int BAR_WIN_WIDTH = 14;
