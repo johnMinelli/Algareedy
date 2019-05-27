@@ -1,4 +1,4 @@
-    package sample.controller;
+package sample.controller;
 
 import com.jfoenix.animation.alert.JFXAlertAnimation;
 import com.jfoenix.controls.*;
