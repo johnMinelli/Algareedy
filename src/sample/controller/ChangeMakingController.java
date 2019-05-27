@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -53,6 +54,9 @@ public class ChangeMakingController implements Initializable {
     
     @FXML
     private TextField chooseChange;
+    
+    @FXML 
+    private Label labelDescription;
     
     private Label[] labelsCoins = new Label[10];
     private Label[] labelsSolution = new Label[10];
@@ -116,6 +120,10 @@ public class ChangeMakingController implements Initializable {
                           "-fx-font-weight: bold ;");
             }
             currentCoin++;
+            labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                    + "riempie la posizione j-esima dell'array contenente la soluzione"
+                    + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
+                    + "i = " + currentCoin.toString() + ", j = " + currentSol.toString());
         }
     }
     
@@ -127,8 +135,17 @@ public class ChangeMakingController implements Initializable {
     }
     
     @FXML
-    private void handleKeyPressed() {
+    private void handleKeyPressed(KeyEvent evt) {
         
     }
+
+    public Integer getCurrentCoin() {
+        return currentCoin;
+    }
+
+    public Integer getCurrentSol() {
+        return currentSol;
+    }
+    
     
 }
