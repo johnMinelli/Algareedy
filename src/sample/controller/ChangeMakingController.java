@@ -74,6 +74,10 @@ public class ChangeMakingController implements Initializable {
         //System.out.println(java.util.Arrays.toString(cmc.getCoins()));
         //System.out.println(java.util.Arrays.toString(cmc.getSolution()));
         chooseChange.setText("");
+        labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                    + "riempie la posizione j-esima dell'array contenente la soluzione"
+                    + "(solution), cioè il numero minimo di monete da restituire. Resto = " + 
+                    change.toString() + ", i = " + currentCoin.toString() + ", j = " + currentSol.toString());
         //Integer[] sol = java.util.Arrays.copyOf(cmc.getSolution(), cmc.getSolution().length);
         for(int i = 0; i < cmc.getCoins().length; i++) {
             Label label = new Label();

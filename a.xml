@@ -48,6 +48,26 @@
     <Titolo> Algoritmo del resto </Titolo>
     <Algoritmo type="change"/>
     <Stuff fxml="false" />
-    <Quiz></Quiz>
+    <Quiz><Domanda>
+			<Testo>Are you greedy?</Testo>
+			<Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
+			<Opzione>1</Opzione>
+			<Opzione>2</Opzione>
+			<Opzione corretta="true">3</Opzione>
+			<Opzione>4</Opzione>
+		</Domanda></Quiz>
+</Lezione>
+<Lezione>
+	<Titolo> Algoritmo dello zaino </Titolo>
+	<Algoritmo type ="knapsack"/>
+	<Stuff fxml="false"/>
+	<Quiz><Domanda>
+			<Testo>Are you greedy?</Testo>
+			<Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
+			<Opzione>1</Opzione>
+			<Opzione>2</Opzione>
+			<Opzione corretta="true">3</Opzione>
+			<Opzione>4</Opzione>
+		</Domanda></Quiz>
 </Lezione>
 </root>
