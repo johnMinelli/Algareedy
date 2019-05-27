@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.geometry.Pos;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -50,17 +52,32 @@ public class ChangeMakingController implements Initializable {
     @FXML
     private VBox vbox;
     
+    @FXML
+    private TextField chooseChange;
+    
+    @FXML 
+    private Label labelDescription;
+    
+    @FXML
+    private Button chooseButton;
+    
     private Label[] labelsCoins = new Label[10];
     private Label[] labelsSolution = new Label[10];
     private Integer currentCoin = 0;
     private Integer currentSol = 0;
+    private Integer change = 90;
         
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ChangeMakingCode cmc = new ChangeMakingCode();
-        cmc.changeMaking(90);
-        System.out.println(java.util.Arrays.toString(cmc.getCoins()));
-        System.out.println(java.util.Arrays.toString(cmc.getSolution()));
+        cmc.changeMaking(change);
+        //System.out.println(java.util.Arrays.toString(cmc.getCoins()));
+        //System.out.println(java.util.Arrays.toString(cmc.getSolution()));
+        chooseChange.setText("");
+        labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                    + "riempie la posizione j-esima dell'array contenente la soluzione"
+                    + "(solution), cioè il numero minimo di monete da restituire. Resto = " + 
+                    change.toString() + ", i = " + currentCoin.toString() + ", j = " + currentSol.toString());
         //Integer[] sol = java.util.Arrays.copyOf(cmc.getSolution(), cmc.getSolution().length);
         for(int i = 0; i < cmc.getCoins().length; i++) {
             Label label = new Label();
@@ -91,11 +108,12 @@ public class ChangeMakingController implements Initializable {
     @FXML   
     private void handleNextStepAction(){
         if(currentCoin < labelsCoins.length) {
-            labelsCoins[currentCoin].setStyle("-fx-background-color: grey;");
             Integer currentCoinElem = Integer.parseInt(labelsCoins[currentCoin].getText());
             Integer currentSolElem = Integer.parseInt(labelsSolution[currentSol].getText());
             if(Objects.equals(currentCoinElem, currentSolElem)) {
-                labelsCoins[currentCoin].setStyle("-fx-background-color: green;");
+                labelsCoins[currentCoin].setStyle("-fx-background-color: black, green ;" +
+                          "-fx-background-insets: 0, 1 1 1 1 ;" + 
+                          "-fx-font-weight: bold ;");
                 labelsSolution[currentSol].setStyle("-fx-background-color: black, white ;" +
                           "-fx-background-insets: 0, 1 1 1 1 ;" + 
                           "-fx-font-weight: bold ;");
@@ -106,9 +124,15 @@ public class ChangeMakingController implements Initializable {
                 currentSol++;
             }
             else {
-                labelsCoins[currentCoin].setStyle("-fx-background-color: red;");
+                labelsCoins[currentCoin].setStyle("-fx-background-color: black, red ;" +
+                          "-fx-background-insets: 0, 1 1 1 1 ;" + 
+                          "-fx-font-weight: bold ;");
             }
             currentCoin++;
+            labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                    + "riempie la posizione j-esima dell'array contenente la soluzione"
+                    + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
+                    + "i = " + currentCoin.toString() + ", j = " + currentSol.toString());
         }
     }
     
@@ -119,4 +143,24 @@ public class ChangeMakingController implements Initializable {
         }
     }
     
+    private boolean isInt(String s) {
+        try {
+            int input = Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e){
+            return false;
+        }
+    }
+    
+    @FXML
+    private void handleChangeButtonClicked() {
+        String input = chooseChange.getText();
+        if((this.isInt(input)) && (Integer.parseInt(input) <= 173)) {
+            change = Integer.parseInt(input);
+            this.initialize(null, null);
+        }
+        else {
+            chooseChange.setText("INSERISCI UN INTERO <= 173");
+        }
+    }
 }
