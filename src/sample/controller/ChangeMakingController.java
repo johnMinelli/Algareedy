@@ -66,7 +66,7 @@ public class ChangeMakingController implements Initializable {
             Label label = new Label();
             label.setText(cmc.getCoin(i).toString());
             label.prefWidthProperty().bind(coinsArray.widthProperty());
-            label.setMinHeight(70.0);
+            label.setMinHeight(50.0);
             label.setAlignment(Pos.CENTER); 
             labelsCoins[i] = label;
             labelsCoins[i].setStyle("-fx-background-color: black, white ;" +
@@ -102,7 +102,7 @@ public class ChangeMakingController implements Initializable {
                 labelsSolution[currentSol].setMinHeight(50.0);
                 labelsSolution[currentSol].prefWidthProperty().bind(solutionArray.widthProperty());
                 labelsSolution[currentSol].setAlignment(Pos.CENTER);
-                solutionArray.add(labelsSolution[currentSol], currentSol, 0);
+                solutionArray.add(labelsSolution[currentSol], currentSol + 2, 0);
                 currentSol++;
             }
             else {
