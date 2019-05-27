@@ -108,13 +108,35 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
     <Teoria fxml="false" />
     <Quiz>
 		<Domanda>
-			<Testo>What does greedy means?</Testo>
-			<Suggerimento>Studia la teoria</Suggerimento>
-			<Opzione>do</Opzione>
-			<Opzione>re</Opzione>
-			<Opzione>mi</Opzione>
-			<Opzione corretta="true">fa</Opzione>
-		</Domanda>
+			<Testo>Se il resto fosse 40 quale sarebbe la prima moneta ad essere restituita?</Testo>
+            <Suggerimento>La soluzione corretta è 20 perchè, seguendo la filosofia dell'ingordo, si sceglie la moneta 
+            più grande tra quelle di valore minore rispetto al resto dovuto.</Suggerimento>
+			<Opzione>5</Opzione>
+			<Opzione>1</Opzione>
+			<Opzione>10</Opzione>
+			<Opzione corretta="true">20</Opzione>
+        </Domanda>
+        <Domanda>
+            <Testo>L'algoritmo del resto basato sull'approccio greedy permette di trovare una soluzione ottima: </Testo>
+            <Suggerimento>Questo algoritmo non sempre permette di trovare una soluzione ottima. Si supponga di avere monete
+                da 11, 5 e 1 centesimo, e di dover dare un resto di 15 centesimi. L'ingordo giudicherà la moneta
+                da 11 più "appetibile" delle altre, e darà un resto con una moneta da 11 e quattro da 1, utilizzando 5 cinque monete
+                . La soluzione ottima, invece, è data da tre monete da 5 centesimi.</Suggerimento>
+            <Opzione>Mai</Opzione>
+            <Opzione corretta="true">Non sempre</Opzione>
+            <Opzione>Sempre</Opzione>
+        </Domanda>
+        <Domanda>
+            <Testo>Cosa influisce sulle possibilità di successo dell'algoritmo?</Testo>
+            <Suggerimento> Supponiamo, come nel tutorial, che le monete siano 10, 50, 20, 5, 1, 2, 20, 50, 10 e 5. In questo
+                caso il resto massimo che si può restituire è 173, cioè la somma dei valori delle monete disponibili(quindi il valore
+                delle monete è importante). Inoltre, dopo aver restituito un resto di 173 non è più possibile soddisfare altre
+                richieste perchè le monete sono finite(quindi anche il loro numero è importante)<Suggerimento>
+            <Opzione> Il valore delle monete </Opzione>
+            <Opzione> Il numero di monete disponibili per ciascun valore </Opzione>
+            <Opzione corretta="true">Entrambi</Opzione>
+            <Opzione> Nessuna delle due </Opzione>
+        </Domanda>
 	</Quiz>
 </Lezione>
 </root>
