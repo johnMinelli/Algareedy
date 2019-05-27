@@ -10,37 +10,52 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ChangeMakingController">
    <children>
-      <VBox fx:id="vbox" prefHeight="400.0" prefWidth="600.0">
+      <VBox fx:id="vbox" alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label prefHeight="102.0" prefWidth="610.0" text="Ad ogni passo, se coins[i] &lt;= resto si riempie la posizione j-esima dell'array contenente la soluzione(solution), cioè il numero minimo di monete da restituire." wrapText="true" />
-            <GridPane fx:id="coinsArray">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <opaqueInsets>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </opaqueInsets>
-            </GridPane>
-            <Region prefHeight="93.0" prefWidth="600.0" />
-            <GridPane fx:id="solutionArray" gridLinesVisible="true">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <opaqueInsets>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </opaqueInsets>
-            </GridPane>
+            <Label fx:id="labelDescription" prefHeight="68.0" prefWidth="600.0" text="Ad ogni passo, se coins[i] &lt;= resto si riempie la posizione j-esima dell'array contenente la soluzione(solution), cioè il numero minimo di monete da restituire. Resto = 90" wrapText="true" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label minWidth="70.0" prefWidth="70.0" text="COINS">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <GridPane fx:id="coinsArray" alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </HBox>
+            <Region prefHeight="108.0" prefWidth="600.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label minWidth="90.0" prefHeight="16.0" prefWidth="89.0" text="SOLUTION">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="solutionArray" alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </GridPane>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="nextStep" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleNextStepAction" text="NextStep" textAlignment="CENTER" />

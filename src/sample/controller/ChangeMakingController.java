@@ -96,6 +96,12 @@ public class ChangeMakingController implements Initializable {
             Integer currentSolElem = Integer.parseInt(labelsSolution[currentSol].getText());
             if(Objects.equals(currentCoinElem, currentSolElem)) {
                 labelsCoins[currentCoin].setStyle("-fx-background-color: green;");
+                labelsSolution[currentSol].setStyle("-fx-background-color: black, white ;" +
+                          "-fx-background-insets: 0, 1 1 1 1 ;" + 
+                          "-fx-font-weight: bold ;");
+                labelsSolution[currentSol].setMinHeight(50.0);
+                labelsSolution[currentSol].prefWidthProperty().bind(solutionArray.widthProperty());
+                labelsSolution[currentSol].setAlignment(Pos.CENTER);
                 solutionArray.add(labelsSolution[currentSol], currentSol, 0);
                 currentSol++;
             }
