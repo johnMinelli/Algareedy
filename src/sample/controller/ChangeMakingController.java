@@ -65,13 +65,15 @@ public class ChangeMakingController implements Initializable {
     private Label[] labelsSolution = new Label[10];
     private Integer currentCoin = 0;
     private Integer currentSol = 0;
+    private Integer change = 90;
         
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ChangeMakingCode cmc = new ChangeMakingCode();
-        cmc.changeMaking(90);
-        System.out.println(java.util.Arrays.toString(cmc.getCoins()));
-        System.out.println(java.util.Arrays.toString(cmc.getSolution()));
+        cmc.changeMaking(change);
+        //System.out.println(java.util.Arrays.toString(cmc.getCoins()));
+        //System.out.println(java.util.Arrays.toString(cmc.getSolution()));
+        chooseChange.setText("");
         //Integer[] sol = java.util.Arrays.copyOf(cmc.getSolution(), cmc.getSolution().length);
         for(int i = 0; i < cmc.getCoins().length; i++) {
             Label label = new Label();
@@ -147,18 +149,14 @@ public class ChangeMakingController implements Initializable {
     }
     
     @FXML
-    private void handleKeyPressed(KeyEvent evt) {
-        
+    private void handleChangeButtonClicked() {
+        String input = chooseChange.getText();
+        if((this.isInt(input)) && (Integer.parseInt(input) <= 173)) {
+            change = Integer.parseInt(input);
+            this.initialize(null, null);
+        }
+        else {
+            chooseChange.setText("INSERISCI UN INTERO <= 173");
+        }
     }
-
-    public Integer getCurrentCoin() {
-        return currentCoin;
-    }
-
-    public Integer getCurrentSol() {
-        return currentSol;
-    }
-    
-    
-    
 }

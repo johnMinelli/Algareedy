@@ -68,12 +68,12 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="changeButton" mnemonicParsing="false" text="ChooseChange">
+                  <Button fx:id="changeButton" mnemonicParsing="false" onMouseClicked="#handleChangeButtonClicked" text="ChooseChange">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField fx:id="chooseChange" onKeyPressed="#handleKeyPressed">
+                  <TextField fx:id="chooseChange">
                      <HBox.margin>
                         <Insets left="10.0" right="70.0" />
                      </HBox.margin>
