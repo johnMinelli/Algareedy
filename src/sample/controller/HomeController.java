@@ -120,7 +120,7 @@ public class HomeController implements Initializable {
             AnchorPane.setLeftAnchor(pane,0.0);AnchorPane.setRightAnchor(pane,0.0);AnchorPane.setBottomAnchor(pane,0.0);
         }else{
             if(l.getAlgorithm().equals("change")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking1.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking.fxml"));
                 try {
                     content.getChildren().add((AnchorPane)loader.load());
                 } catch (IOException ex) {
@@ -256,13 +256,6 @@ public class HomeController implements Initializable {
         content.getChildren().add(hintBtn);
         AnchorPane.setBottomAnchor(hintBtn,29.0);
         AnchorPane.setLeftAnchor(hintBtn,24.0);
-
-        /*
-        HBox hbox = new HBox();
-            hbox.getChildren().add(vbox);
-            hbox.setSpacing(50);
-            hbox.setPadding(new Insets(40, 10, 10, 120));
-         */
     }
 
     public void onEvent(EventType event) {
