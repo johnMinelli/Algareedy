@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.geometry.Pos;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -49,6 +50,9 @@ public class ChangeMakingController implements Initializable {
     
     @FXML
     private VBox vbox;
+    
+    @FXML
+    private TextField chooseChange;
     
     private Label[] labelsCoins = new Label[10];
     private Label[] labelsSolution = new Label[10];
@@ -91,11 +95,12 @@ public class ChangeMakingController implements Initializable {
     @FXML   
     private void handleNextStepAction(){
         if(currentCoin < labelsCoins.length) {
-            labelsCoins[currentCoin].setStyle("-fx-background-color: grey;");
             Integer currentCoinElem = Integer.parseInt(labelsCoins[currentCoin].getText());
             Integer currentSolElem = Integer.parseInt(labelsSolution[currentSol].getText());
             if(Objects.equals(currentCoinElem, currentSolElem)) {
-                labelsCoins[currentCoin].setStyle("-fx-background-color: green;");
+                labelsCoins[currentCoin].setStyle("-fx-background-color: black, green ;" +
+                          "-fx-background-insets: 0, 1 1 1 1 ;" + 
+                          "-fx-font-weight: bold ;");
                 labelsSolution[currentSol].setStyle("-fx-background-color: black, white ;" +
                           "-fx-background-insets: 0, 1 1 1 1 ;" + 
                           "-fx-font-weight: bold ;");
@@ -106,7 +111,9 @@ public class ChangeMakingController implements Initializable {
                 currentSol++;
             }
             else {
-                labelsCoins[currentCoin].setStyle("-fx-background-color: red;");
+                labelsCoins[currentCoin].setStyle("-fx-background-color: black, red ;" +
+                          "-fx-background-insets: 0, 1 1 1 1 ;" + 
+                          "-fx-font-weight: bold ;");
             }
             currentCoin++;
         }
@@ -117,6 +124,11 @@ public class ChangeMakingController implements Initializable {
         while(currentCoin < labelsCoins.length) {
             nextStep.fire();
         }
+    }
+    
+    @FXML
+    private void handleKeyPressed() {
+        
     }
     
 }
