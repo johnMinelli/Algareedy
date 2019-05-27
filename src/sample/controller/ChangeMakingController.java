@@ -58,6 +58,9 @@ public class ChangeMakingController implements Initializable {
     @FXML 
     private Label labelDescription;
     
+    @FXML
+    private Button chooseButton;
+    
     private Label[] labelsCoins = new Label[10];
     private Label[] labelsSolution = new Label[10];
     private Integer currentCoin = 0;
@@ -134,6 +137,15 @@ public class ChangeMakingController implements Initializable {
         }
     }
     
+    private boolean isInt(String s) {
+        try {
+            int input = Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e){
+            return false;
+        }
+    }
+    
     @FXML
     private void handleKeyPressed(KeyEvent evt) {
         
@@ -146,6 +158,7 @@ public class ChangeMakingController implements Initializable {
     public Integer getCurrentSol() {
         return currentSol;
     }
+    
     
     
 }

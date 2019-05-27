@@ -17,13 +17,19 @@
    <children>
       <VBox fx:id="vbox" alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label fx:id="labelDescription" prefHeight="68.0" prefWidth="600.0" text="Ad ogni passo, se coins[i] &lt;= resto si riempie la posizione j-esima dell'array contenente la soluzione(solution), cioè il numero minimo di monete da restituire. Resto = 90" wrapText="true" />
+            <Label fx:id="labelDescription" prefHeight="68.0" prefWidth="600.0" text="Ad ogni passo, se coins[i] &lt;= resto si riempie la posizione j-esima dell'array contenente la soluzione(solution), cioè il numero minimo di monete da restituire. Resto = 90" wrapText="true">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin></Label>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label minWidth="70.0" prefWidth="70.0" text="COINS">
                      <font>
                         <Font name="System Bold" size="13.0" />
-                     </font></Label>
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
                   <GridPane fx:id="coinsArray" alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -42,6 +48,9 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Label>
                   <GridPane fx:id="solutionArray" alignment="CENTER">
                     <columnConstraints>
@@ -59,9 +68,14 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <Button fx:id="changeButton" mnemonicParsing="false" text="ChooseChange">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
                   <TextField fx:id="chooseChange" onKeyPressed="#handleKeyPressed">
                      <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="10.0" right="70.0" />
                      </HBox.margin>
                   </TextField>
                   <Button fx:id="nextStep" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleNextStepAction" text="NextStep" textAlignment="CENTER">
