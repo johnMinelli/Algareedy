@@ -5,3 +5,13 @@
 - la lezione teorica è una sequenza di slide in cui si presenta la progettazione greedy a grandi linee con focus sugli aspetti fondamentalicon focus sugli aspetti fondamentali;
 - per quanto riguarda gli algoritmi, l'esecuzione interattiva di questi è preceduta da una slide contenente lo pseudocodice e per ogni suo passo è prevista anche una breve descrizione a parole;
 - per ogni lezione si ha una finestra sola il cui contenuto cambia alla pressione dei bottoni "avanti" e "indietro";
+
+
+TODO LIST
+controllo errori di parsing del file xml in loadLessons()
+domande lezioni
+suggerimenti domande
+cenni sulla complessità dell'algoritmo del resto
+aggiunta input di resto da parte dell'utente 
+(alert quiz)
+
