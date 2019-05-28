@@ -131,7 +131,7 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
             <Suggerimento> Supponiamo, come nel tutorial, che le monete siano 10, 50, 20, 5, 1, 2, 20, 50, 10 e 5. In questo
                 caso il resto massimo che si può restituire è 173, cioè la somma dei valori delle monete disponibili(quindi il valore
                 delle monete è importante). Inoltre, dopo aver restituito un resto di 173 non è più possibile soddisfare altre
-                richieste perchè le monete sono finite(quindi anche il loro numero è importante)<Suggerimento>
+                richieste perchè le monete sono finite(quindi anche il loro numero è importante)</Suggerimento>
             <Opzione> Il valore delle monete </Opzione>
             <Opzione> Il numero di monete disponibili per ciascun valore </Opzione>
             <Opzione corretta="true">Entrambi</Opzione>
