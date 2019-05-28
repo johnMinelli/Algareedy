@@ -127,14 +127,15 @@ public class ChangeMakingController implements Initializable {
             currentCoin++;
             labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
                     + "riempie la posizione j-esima dell'array contenente la soluzione"
-                    + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
-                    + "i = " + currentCoin.toString() + ", j = " + currentSol.toString());
+                    + "(solution), cioè il numero minimo di monete da restituire. RESTO = "
+                    + change.toString() + ", i = " + currentCoin.toString() + ", j = " + 
+                    currentSol.toString());
         }
         else {
             labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
                     + "riempie la posizione j-esima dell'array contenente la soluzione"
-                    + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
-                    + "i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
+                    + "(solution), cioè il numero minimo di monete da restituire. RESTO = "
+                    + change.toString() + ", i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
                     ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE, PUOI SCEGLIERE UN NUOVO RESTO,"
                     + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
         }

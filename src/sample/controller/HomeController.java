@@ -159,7 +159,7 @@ public class HomeController implements Initializable {
         layout.setHeading(titleLabel);
         //set body layout
         JFXProgressBar bar = new JFXProgressBar();
-        bar.setMinWidth(Const.PANE_WIDTH-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
+        //bar.setMinWidth(Const.PANE_WIDTH-((Main.getConf().getTheme().equals(Const.WIN))?Const.BAR_WIN_WIDTH:Const.BAR_MAC_WIDTH));
         JFXButton nextBtn = new JFXButton("");
         nextBtn.setButtonType(JFXButton.ButtonType.RAISED);
         nextBtn.getStyleClass().add("animated-option-button");
