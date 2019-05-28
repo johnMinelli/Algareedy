@@ -201,7 +201,7 @@ public class ChangeMakingController implements Initializable {
             this.initialize(null, null);
         }
         else {
-            chooseChange.setText("INSERISCI UN INTERO <= 173");
+            chooseChange.setText("INSERISCI UN INTERO <= 173 E > 0");
         }
     }
     
@@ -212,7 +212,9 @@ public class ChangeMakingController implements Initializable {
         for(Integer i = 0; i < numOfElems; i++) {
             valueOfCoins = valueOfCoins + Integer.parseInt(array[i].getText());
         }
-        if(change == valueOfCoins) {
+        System.out.println(change.toString());
+        System.out.println(valueOfCoins.toString());
+        if(Objects.equals(change, valueOfCoins)) {
             res = true;
         }
         return res;
