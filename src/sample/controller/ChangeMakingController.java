@@ -65,6 +65,7 @@ public class ChangeMakingController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         currentCoin = 0;
         currentSol = 0;
+        solutionArray.getChildren().clear();
         ChangeMakingCode cmc = new ChangeMakingCode();
         cmc.changeMaking(change);
         //System.out.println(java.util.Arrays.toString(cmc.getCoins()));
@@ -132,12 +133,24 @@ public class ChangeMakingController implements Initializable {
                     currentSol.toString());
         }
         else {
-            labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
-                    + "riempie la posizione j-esima dell'array contenente la soluzione"
-                    + "(solution), cioè il numero minimo di monete da restituire. RESTO = "
-                    + change.toString() + ", i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
-                    ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE, PUOI SCEGLIERE UN NUOVO RESTO,"
-                    + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
+            if(this.changeSuccess(labelsSolution)) {
+                labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                        + "riempie la posizione j-esima dell'array contenente la soluzione"
+                        + "(solution), cioè il numero minimo di monete da restituire. Resto = " +
+                        change.toString()
+                        + ", i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
+                        ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE CON SUCCESSO, PUOI SCEGLIERE UN NUOVO RESTO,"
+                        + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
+            }
+            else {
+                labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                        + "riempie la posizione j-esima dell'array contenente la soluzione"
+                        + "(solution), cioè il numero minimo di monete da restituire. Resto = " +
+                        change.toString()
+                        + ", i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
+                        ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE SENZA SUCCESSO, PUOI SCEGLIERE UN NUOVO RESTO,"
+                        + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
+            }
         }
     }
     
@@ -146,12 +159,24 @@ public class ChangeMakingController implements Initializable {
         while(currentCoin < labelsCoins.length) {
             nextStep.fire();
         }
-        labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
-                    + "riempie la posizione j-esima dell'array contenente la soluzione"
-                    + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
-                    + "i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
-                    ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE, PUOI SCEGLIERE UN NUOVO RESTO,"
-                    + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
+        /*
+        if(this.changeSuccess(labelsSolution)) {
+            labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                        + "riempie la posizione j-esima dell'array contenente la soluzione"
+                        + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
+                        + "i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
+                        ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE CON SUCCESSO, PUOI SCEGLIERE UN NUOVO RESTO,"
+                        + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
+        }
+        else {
+            labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                        + "riempie la posizione j-esima dell'array contenente la soluzione"
+                        + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
+                        + "i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
+                        ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE SENZA SUCCESSO, PUOI SCEGLIERE UN NUOVO RESTO,"
+                        + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
+        }
+        */
     }
     
     private boolean isInt(String s) {
@@ -166,12 +191,36 @@ public class ChangeMakingController implements Initializable {
     @FXML
     private void handleChangeButtonClicked() {
         String input = chooseChange.getText();
-        if((this.isInt(input)) && (Integer.parseInt(input) <= 173)) {
+        if((this.isInt(input)) && (Integer.parseInt(input) <= 173) && 
+                (Integer.parseInt(input) > 0)) {
             change = Integer.parseInt(input);
             this.initialize(null, null);
         }
         else {
             chooseChange.setText("INSERISCI UN INTERO <= 173");
         }
+    }
+    
+    private boolean changeSuccess(Label[] array) {
+        Boolean res = false;
+        Integer valueOfCoins = 0;
+        Integer numOfElems = this.countElems(array);
+        for(Integer i = 0; i < numOfElems; i++) {
+            valueOfCoins = valueOfCoins + Integer.parseInt(array[i].getText());
+        }
+        if(change == valueOfCoins) {
+            res = true;
+        }
+        return res;
+    }
+    
+    private Integer countElems(Label[] array) {
+        Integer counter = 0;
+        for(Integer i = 0; i < array.length; i++) {
+            if(array[i] != null) {
+                counter++;
+            }
+        }
+        return counter;
     }
 }
