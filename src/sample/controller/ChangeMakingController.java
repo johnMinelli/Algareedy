@@ -69,6 +69,8 @@ public class ChangeMakingController implements Initializable {
         
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        currentCoin = 0;
+        currentSol = 0;
         ChangeMakingCode cmc = new ChangeMakingCode();
         cmc.changeMaking(change);
         //System.out.println(java.util.Arrays.toString(cmc.getCoins()));
@@ -134,6 +136,14 @@ public class ChangeMakingController implements Initializable {
                     + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
                     + "i = " + currentCoin.toString() + ", j = " + currentSol.toString());
         }
+        else {
+            labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                    + "riempie la posizione j-esima dell'array contenente la soluzione"
+                    + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
+                    + "i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
+                    ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE, PUOI SCEGLIERE UN NUOVO RESTO,"
+                    + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
+        }
     }
     
     @FXML
@@ -141,6 +151,12 @@ public class ChangeMakingController implements Initializable {
         while(currentCoin < labelsCoins.length) {
             nextStep.fire();
         }
+        labelDescription.setText("Ad ogni passo, se coins[i] <= resto si "
+                    + "riempie la posizione j-esima dell'array contenente la soluzione"
+                    + "(solution), cioè il numero minimo di monete da restituire. Resto = 90, "
+                    + "i = " + currentCoin.toString() + ", j = " + currentSol.toString() + 
+                    ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE, PUOI SCEGLIERE UN NUOVO RESTO,"
+                    + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
     }
     
     private boolean isInt(String s) {
