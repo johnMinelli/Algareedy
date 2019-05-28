@@ -23,8 +23,9 @@ import sample.conf.Const;
 import sample.model.Lesson;
 import sample.model.Question;
 
-
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -117,7 +118,7 @@ public class HomeController implements Initializable {
                 pane.setContent(container);
             }
             content.getChildren().add(pane);
-            AnchorPane.setLeftAnchor(pane,0.0);AnchorPane.setRightAnchor(pane,0.0);AnchorPane.setBottomAnchor(pane,0.0);
+            AnchorPane.setLeftAnchor(pane,0.0);AnchorPane.setRightAnchor(pane,0.0);AnchorPane.setBottomAnchor(pane,0.0);AnchorPane.setTopAnchor(pane,0.0);
         }else{
             if(l.getAlgorithm().equals("change")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangeMaking.fxml"));
@@ -245,7 +246,11 @@ public class HomeController implements Initializable {
         StackPane container = new StackPane(layout);
         container.setPadding(new Insets(24));
         content.getChildren().add(container);
+        AnchorPane.setLeftAnchor(container,0.0);
+        AnchorPane.setRightAnchor(container,0.0);
         content.getChildren().add(bar);
+        AnchorPane.setLeftAnchor(bar,0.0);
+        AnchorPane.setRightAnchor(bar,0.0);
         AnchorPane.setBottomAnchor(bar,1.0);
         content.getChildren().add(refreshBtn);
         AnchorPane.setTopAnchor(refreshBtn,10.0);

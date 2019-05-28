@@ -1,15 +1,16 @@
 package sample.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
-import sample.conf.Const;
 import sample.Main;
+import sample.conf.Const;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable  {
 

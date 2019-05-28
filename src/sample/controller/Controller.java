@@ -15,9 +15,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
+import sample.Main;
 import sample.conf.Configuration;
 import sample.conf.Const;
-import sample.Main;
 import sample.model.Seeker;
 import sample.model.Vector2D;
 

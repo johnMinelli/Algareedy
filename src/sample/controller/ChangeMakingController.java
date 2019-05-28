@@ -5,27 +5,21 @@
  */
 package sample.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.Event;
-import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import sample.Main;
-
 import sample.model.ChangeMakingCode;
+
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
 /**
  * FXML Controller class
  *

@@ -17,14 +17,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ChangeMakingController">
    <children>
-      <VBox fx:id="vbox" alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+      <VBox fx:id="vbox" alignment="CENTER" prefHeight="400.0" prefWidth="680.0">
          <children>
-            <StackPane alignment="TOP_LEFT" minHeight="400.0" minWidth="400.0" prefHeight="150.0" prefWidth="200.0">
+            <StackPane alignment="TOP_LEFT" minHeight="400.0" prefHeight="150.0">
                <children>
-                  <JFXTextArea prefHeight="329.0" prefWidth="600.0" text="Pseudocodice dell'algoritmo del resto:&#10;&#10;resto(Integer coins[], Integer[] solution, Integer change) {&#10;{L'array coins viene ordinato in maniera decrescente}&#10;    for(Integer i = 0; i &lt; coins.length; i++) {&#10;        if(coins[i] &lt;= change) {&#10;             solution[j] = coins[i];&#10;             change = change - coins[i];&#10;             j = j + 1;&#10;        }&#10;     }&#10;}&#10;&#10;Complessità:&#10;&#10;O(nlogn) se coins non è già stato ordinato. In questo caso è l'ordinamento il fattore dominante nel determinare la complessità dell'algoritmo.&#10;O(n) se coins è già stato ordinato. Siccome non è necessario un ordinamento, la complessità è determinata solo dal tempo di esecuzione del ciclo for." />
+                  <JFXTextArea prefHeight="329.0" prefWidth="680.0" text="Pseudocodice dell'algoritmo del resto:&#10;&#10;resto(Integer coins[], Integer[] solution, Integer change) {&#10;{L'array coins viene ordinato in maniera decrescente}&#10;    for(Integer i = 0; i &lt; coins.length; i++) {&#10;        if(coins[i] &lt;= change) {&#10;             solution[j] = coins[i];&#10;             change = change - coins[i];&#10;             j = j + 1;&#10;        }&#10;     }&#10;}&#10;&#10;Complessità:&#10;&#10;O(nlogn) se coins non è già stato ordinato. In questo caso è l'ordinamento il fattore dominante nel determinare la complessità dell'algoritmo.&#10;O(n) se coins è già stato ordinato. Siccome non è necessario un ordinamento, la complessità è determinata solo dal tempo di esecuzione del ciclo for." />
                </children>
             </StackPane>
-            <Label fx:id="labelDescription" minHeight="100.0" prefHeight="68.0" prefWidth="600.0" text="Ad ogni passo, se coins[i] &lt;= resto si riempie la posizione j-esima dell'array contenente la soluzione(solution), cioè il numero minimo di monete da restituire. Resto = 90" wrapText="true">
+            <Label fx:id="labelDescription" minHeight="100.0" prefHeight="68.0" prefWidth="680.0" text="Ad ogni passo, se coins[i] &lt;= resto si riempie la posizione j-esima dell'array contenente la soluzione(solution), cioè il numero minimo di monete da restituire. Resto = 90" wrapText="true">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin></Label>
@@ -48,7 +48,7 @@
                   </GridPane>
                </children>
             </HBox>
-            <Region minHeight="95.0" prefHeight="108.0" prefWidth="600.0" />
+            <Region minHeight="95.0" prefHeight="108.0" prefWidth="680.0" />
             <HBox alignment="CENTER_LEFT" minHeight="90.0" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label minWidth="90.0" prefHeight="16.0" prefWidth="89.0" text="SOLUTION">

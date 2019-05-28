@@ -4,21 +4,14 @@ import com.jfoenix.animation.alert.JFXAlertAnimation;
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextArea;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -33,6 +26,8 @@ import sample.model.Lesson;
 import sample.model.Question;
 import sample.model.Seeker;
 import sample.model.Vector2D;
+import sample.model.ChangeMakingCode;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -42,15 +37,9 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.awt.*;
 import java.io.File;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import static sample.conf.Const.*;
-import sample.model.ChangeMakingCode;
 
 public class Main extends Application {
     private static Stage stage;
@@ -147,7 +136,7 @@ public class Main extends Application {
     }
     public static void loadLessons() throws Exception {
         try {
-            File fXmlFile = new File(FILENAME);
+            File fXmlFile = new File(Const.FILENAME);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);

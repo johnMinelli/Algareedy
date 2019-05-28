@@ -60,7 +60,7 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
 	<Teoria fxml="true">
 		<StackPane>
 			<children>
-				<VBox alignment="CENTER">
+				<VBox>
 						<JFXDialogLayout styleClass="sublist">
 							<heading>
 								<Label>Iniziamo con programmazione dinamica</Label>
@@ -78,7 +78,7 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
 							</body>
 						</JFXDialogLayout>
 						<Label styleClass="inline">Spesso non è necessario analizzare tutti i possibili valori di un problema.</Label>
-						<Label styleClass="inline">Faccio una scelta "ingorda", ma sicura: seleziono l’entità maggiore/minore ed elimino tutte le attività incompatibili.</Label>
+						<Label styleClass="inline2">Faccio una scelta "ingorda", ma sicura: seleziono l’entità max/min ed elimino tutte le attività incompatibili.</Label>
 						<JFXDialogLayout styleClass="sublist">
 							<heading>
 								<Label>Approccio greedy, senza programmazione dinamica</Label>
@@ -119,7 +119,7 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
 	<Quiz>
 		<Domanda>
 	<Testo>E’ consigliabile adottare sin da subito un approccio greedy?</Testo>
-	<Suggerimento>Si se il problema è intuitivamente risolvibile tramite sequenze di scelte localmente ottime.</Suggerimento>
+	<Suggerimento>Si, se il problema è intuitivamente risolvibile tramite sequenze di scelte localmente ottime.</Suggerimento>
 	<Opzione>Si, sempre</Opzione>
 	<Opzione>No, mai</Opzione>
 	<Opzione corretta="true">Si, solo per problemi banali</Opzione>
@@ -127,7 +127,7 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
 </Domanda>
 <Domanda>
 	<Testo>Spesso tecniche greedy si adottano in base ad intuizioni del programmatore:</Testo>
-	<Suggerimento>Si sta nella bravura ed esperienza del programmatore il riconoscere un problema affrontabile in modo “greedy” con costo ottimo.</Suggerimento>
+	<Suggerimento>Vero, sta nella bravura ed esperienza del programmatore il riconoscere un problema affrontabile in modo “greedy” con costo ottimo.</Suggerimento>
 	<Opzione corretta="true">Vero</Opzione>
 	<Opzione>Falso</Opzione>
 </Domanda>
@@ -164,50 +164,43 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
     <Quiz>
 		<Domanda>
 			<Testo>Se il resto fosse 40 quale sarebbe la prima moneta ad essere restituita?</Testo>
-            <Suggerimento>La soluzione corretta è 20 perchè, seguendo la filosofia dell'ingordo, si sceglie la moneta 
-            più grande tra quelle di valore minore rispetto al resto dovuto.</Suggerimento>
+            <Suggerimento>La soluzione corretta è 20 perchè, seguendo la filosofia dell'ingordo, si sceglie la moneta più grande tra quelle di valore minore rispetto al resto dovuto.</Suggerimento>
 			<Opzione>5</Opzione>
 			<Opzione>1</Opzione>
 			<Opzione>10</Opzione>
 			<Opzione corretta="true">20</Opzione>
         </Domanda>
         <Domanda>
-            <Testo>L'algoritmo del resto basato sull'approccio greedy permette di trovare una soluzione ottima: </Testo>
-            <Suggerimento>Questo algoritmo non sempre permette di trovare una soluzione ottima. Si supponga di avere monete
-                da 11, 5 e 1 centesimo, e di dover dare un resto di 15 centesimi. L'ingordo giudicherà la moneta
-                da 11 più "appetibile" delle altre, e darà un resto con una moneta da 11 e quattro da 1, utilizzando 5 cinque monete
-                . La soluzione ottima, invece, è data da tre monete da 5 centesimi.</Suggerimento>
+            <Testo>L'algoritmo del resto basato sull'approccio greedy permette di trovare una soluzione ottima:</Testo>
+            <Suggerimento>Questo algoritmo non sempre permette di trovare una soluzione ottima. Si supponga di avere monete da 11, 5 e 1 centesimo, e di dover dare un resto di 15 centesimi. L'ingordo giudicherà la moneta da 11 più "appetibile" delle altre, e darà un resto con una moneta da 11 e quattro da 1, utilizzando 5 cinque monete. La soluzione ottima, invece, è data da tre monete da 5 centesimi.</Suggerimento>
             <Opzione>Mai</Opzione>
             <Opzione corretta="true">Non sempre</Opzione>
             <Opzione>Sempre</Opzione>
         </Domanda>
         <Domanda>
             <Testo>Cosa influisce sulle possibilità di successo dell'algoritmo?</Testo>
-            <Suggerimento> Supponiamo, come nel tutorial, che le monete siano 10, 50, 20, 5, 1, 2, 20, 50, 10 e 5. In questo
-                caso il resto massimo che si può restituire è 173, cioè la somma dei valori delle monete disponibili(quindi il valore
-                delle monete è importante). Inoltre, dopo aver restituito un resto di 173 non è più possibile soddisfare altre
-                richieste perchè le monete sono finite(quindi anche il loro numero è importante)</Suggerimento>
-            <Opzione> Il valore delle monete </Opzione>
-            <Opzione> Il numero di monete disponibili per ciascun valore </Opzione>
+            <Suggerimento>Supponiamo, come nel tutorial, che le monete siano 10, 50, 20, 5, 1, 2, 20, 50, 10 e 5. In questo caso il resto massimo che si può restituire è 173, cioè la somma dei valori delle monete disponibili(quindi il valore delle monete è importante). Inoltre, dopo aver restituito un resto di 173 non è più possibile soddisfare altre richieste perchè le monete sono finite(quindi anche il loro numero è importante)</Suggerimento>
+            <Opzione>Il valore delle monete</Opzione>
+            <Opzione>Il numero di monete disponibili per ciascun valore</Opzione>
             <Opzione corretta="true">Entrambi</Opzione>
-            <Opzione> Nessuna delle due </Opzione>
+            <Opzione>Nessuna delle due</Opzione>
         </Domanda>
         <Domanda>
-            <Testo>Qual è la complessità dell'algoritmo del resto se
-                l'array coins non è ordinato?</Testo>
-            <Suggerimento> La complessità è O(nlog(n)) per via della necessità di ordinare l'array.</Suggerimento>
-            <Opzione corretta = "true"> O(nlog(n)) </Opzione>
-            <Opzione> O(n) </Opzione>
-            <Opzione> O(log(n)) </Opzione>
-            <Opzione> O(n^2) </Opzione>
+            <Testo>Qual è la complessità dell'algoritmo del resto se l'array coins non è ordinato?</Testo>
+            <Suggerimento>La complessità è O(nlog(n)) per via della necessità di ordinare l'array.</Suggerimento>
+            <Opzione corretta = "true"> O(nlog(n))</Opzione>
+            <Opzione>O(n)</Opzione>
+            <Opzione>O(log(n))</Opzione>
+            <Opzione>O(n^2)</Opzione>
         </Domanda>
         <Domanda>
-            <Testo> Avere l'array coins ordinato è importante ai fini del metodo greedy e della complessità dell'algoritmo? </Testo>
+            <Testo>Avere l'array coins ordinato è importante ai fini del metodo greedy e della complessità dell'algoritmo? </Testo>
             <Suggerimento> Sì, se l'array non fosse già ordinato non si procederebbe secondo le linee guida del metodo greedy che prevede un ordinamento iniziale degli oggetti in base alla loro "appetibilità". Inoltre, se l'array è già ordinato la complessità scende a O(n).</Suggerimento>
-            <Opzione> Influisce solo sulla correttezza del metodo </Opzione>
-            <Opzione> Influisce solo sulla complessità </Opzione>
-            <Opzione corretta = "true"> Sì, è importante per entrambe </Opzione>
-            <Opzione> No, non è importante per nessuna delle due </Opzione>
+            <Opzione>Influisce solo sulla correttezza del metodo</Opzione>
+            <Opzione>Influisce solo sulla complessità</Opzione>
+            <Opzione corretta = "true"> Sì, è importante per entrambe</Opzione>
+            <Opzione>No, non è importante per nessuna delle due</Opzione>
+		</Domanda>
 	</Quiz>
 </Lezione>
 </root>

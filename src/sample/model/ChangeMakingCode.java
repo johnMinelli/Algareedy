@@ -5,7 +5,6 @@
  */
 package sample.model;
 
-import java.util.Collection;
 import java.util.Collections;
 
 /**

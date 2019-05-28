@@ -1,17 +1,15 @@
 package sample.controller;
 
-import java.awt.Desktop;
-import java.net.URI;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+
+import java.awt.*;
+import java.net.URI;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class AboutController implements Initializable {
 

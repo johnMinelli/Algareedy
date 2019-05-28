@@ -407,11 +407,9 @@
 
 .jfx-text-field, .jfx-password-field, .jfx-text-area {
     -fx-background-color: transparent;
-    -fx-font-weight: BOLD;
+    -fx-font-weight: NORMAL;
     -fx-prompt-text-fill: #808080;
     -fx-alignment: top-left;
-    -fx-max-width: 300.0;
-    -fx-pref-width: 300.0;
     -jfx-focus-color: #4059A9;
     -jfx-unfocus-color: #4d4d4d;
 }
@@ -555,8 +553,12 @@
 }
 
 .inline{
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
     -fx-padding: 0 32 0 32;
+}
+.inline2{
+    -fx-font-size: 14px;
+    -fx-padding: 0 10 0 32;
 }
 
 /*.custom-jfx-list-view .sublist-container {
