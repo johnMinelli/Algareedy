@@ -66,6 +66,8 @@ public class ChangeMakingController implements Initializable {
         currentCoin = 0;
         currentSol = 0;
         solutionArray.getChildren().clear();
+        nextStep.setDisable(false);
+        startToFinish.setDisable(false);
         ChangeMakingCode cmc = new ChangeMakingCode();
         cmc.changeMaking(change);
         //System.out.println(java.util.Arrays.toString(cmc.getCoins()));
@@ -151,6 +153,8 @@ public class ChangeMakingController implements Initializable {
                         ". L'ALGORITMO HA TERMINATO LA SUA ESECUZIONE SENZA SUCCESSO, PUOI SCEGLIERE UN NUOVO RESTO,"
                         + " TORNARE ALLA HOME OPPURE PASSARE ALLE DOMANDE DI AUTOAPPRENDIMENTO.");
             }
+            nextStep.setDisable(true);
+            startToFinish.setDisable(true);
         }
     }
     
