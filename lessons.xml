@@ -8,12 +8,52 @@
 Il metodo greedy si può applicare a quei problemi di ottimizzazione in cui occorre selezionare un sottoinsieme S "ottimo" di oggetti, che verificano certe proprietà, da un insieme di n, oggetti.
 Un algoritmo greedy ordina dapprima gli oggetti in base ad un criterio di "appetibilità". La soluzione del problema è poi costruita in modo incrementale considerando gli oggetti uno alla volta e aggiungendo ogni volta l'oggetto più appetibile, se possibile. Fatta la scelta, è successivamente risolto un sottoproblema dello stesso tipo ma di dimensione più piccola.
 Il problema più piccolo dipende dalla sequenza di scelte passate, ma non dalle scelte future, per questo non è detto che la soluzione finale sia "ottima". Affinché un algoritmo greedy fornisca la soluzione "ottima" di un problema, occorre che siano verificate due proprietà:
-	1. Scelta greedy. Dopo aver fornito una caratterizzazione matematica della soluzione ottima, occorre dimostrare che tale soluzione può essere modificata in modo da utilizzare una prima scelta "greedy", che riduce il problema ad un sottoproble­ma più piccolo dello stesso tipo, e poi mostrare per induzione che il procedimento può essere esteso ad una sequenza di scelte "greedy";
+	1. Scelta greedy (locale, ingorda). Dopo aver fornito una caratterizzazione matematica della soluzione ottima, occorre dimostrare che tale soluzione può essere modificata in modo da utilizzare una prima scelta "greedy", che riduce il problema ad un sottoproblema più piccolo dello stesso tipo, e poi mostrare per induzione che il procedimento può essere esteso ad una sequenza di scelte "greedy";
 	2. Sottostruttura ottima. Per mostrare che una scelta "greedy" riduce il problema ad un sottoproblema più piccolo dello stesso tipo, occorre dimostrare che una soluzione ottima del problema contiene al suo interno le soluzioni ottime dei sottoproblemi.
+	3. Definizione ricorsiva. Una volta individuate queste proprietà ci limiteremo a descrivere la soluzione in forma ricorsiva
 
 Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsiasi problema di ottimizzazione. Nelle lezioni successive potrai osservere degli esempi di problemi per i quali la tecnica greedy si comporta bene.
 	</Teoria>
-	<Quiz></Quiz>
+	<Quiz><Domanda>
+			<Testo>Tutti i problemi permettono una scelta ingorda?</Testo>
+			<Suggerimento>Una scelta ingorda è una scelta “localmente” ottima, senza tenere in considerazione il futuro o problema più grande. Si applica a problemi di ottimizzazione.</Suggerimento>
+			<Opzione>Dipende dal linguaggio di programmazione</Opzione>
+			<Opzione corretta="true">No</Opzione>
+			<Opzione>Si</Opzione>
+			<Opzione>Si ma non sempre è la scelta ottima</Opzione>
+		</Domanda>
+		<Domanda>
+			<Testo>Quali sono le proprietà fondamentali perchè la soluzione ottima di un problema sia fornita da un algoritmo ingordo:</Testo>
+			<Suggerimento>Il problema deve poter essere scomponibile in sottoproblemi e dobbiamo poter descrivere la soluzione partendo da tal sottospazio ottimo.</Suggerimento>
+			<Opzione>sottostruttura ricorsiva</Opzione>
+			<Opzione>è sufficiente che sia un problema di ottimizzazione</Opzione>
+			<Opzione corretta="true">sottostruttura ottima e definizione ricorsiva</Opzione>
+			<Opzione>permette approcci top-down</Opzione>
+		</Domanda>
+		<Domanda>
+			<Testo>Cosa comporta la proprietà della sottostruttura ottima?</Testo>
+			<Suggerimento>Supponiamo che A[i, j] sia una soluzione ottimale di S[i, j] e sia k un intervallo che appartiene a A[i, j]; allora A[i, j] contiene le soluzioni ottimali di S[i, k] e S[k, j].</Suggerimento>
+			<Opzione corretta="true">la suddivisione dello spazio delle soluzioni ottimali in sottospazi ottimali per i sotto problemi</Opzione>
+			<Opzione>affrontando il problema sulla metà dei dati possiamo rispondere in modo ottimo</Opzione>
+			<Opzione>applicando l’algoritmo su intervalli disgiunti otterremo valori concordanti</Opzione>
+			<Opzione>parallelizzazione delle operazioni</Opzione>
+		</Domanda>
+		<Domanda>
+			<Testo>Qual è un esempio di problema definibile in modo ricorsivo?</Testo>
+			<Suggerimento>Il commesso viaggiatore è l’unico esempio di problema definibile in modo ricorsivo: ad ogni tappa bisogna decidere sulla base della distanza quale sarà la prossima fermata.</Suggerimento>
+			<Opzione corretta="true">Travelling salesman</Opzione>
+			<Opzione>Fat fisherman</Opzione>
+			<Opzione>Halting problem</Opzione>
+			<Opzione>Longest common subsequence</Opzione>
+		</Domanda>
+		<Domanda>
+			<Testo>Per dimostrare che la scelta (locale ingorda) trovata vale:</Testo>
+			<Suggerimento>Dobbiamo dimostrare che il procedimento di risoluzione del sottoproble­ma più piccolo è applicabile per induzione a quello più grande ottenendo per estesione una sequenza di scelte "greedy".</Suggerimento>
+			<Opzione>è necessario ridurre lo spazio delle soluzioni a booleani</Opzione>
+			<Opzione>dobbiamo procedere per assurdo </Opzione>
+			<Opzione>dobbiamo procedere per implicazione logica</Opzione>
+			<Opzione corretta="true">è necessario dimostrare l’estensione del procedimento al sovrainsieme</Opzione>
+		</Domanda></Quiz>
 </Lezione>
 <Lezione>
 	<Titolo>Approccio alla programmazione Greedy</Titolo>
@@ -37,7 +77,8 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
 								</JFXListView>
 							</body>
 						</JFXDialogLayout>
-						<Label styleClass="inline">Spesso non è necessario analizzare tutti i possibili valori di un problema. Faccio una scelta "ingorda", ma sicura: seleziono l’entità maggiore/minore ed elimino tutte le attività che non sono compatibili con la scelta ingorda.</Label>
+						<Label styleClass="inline">Spesso non è necessario analizzare tutti i possibili valori di un problema.</Label>
+						<Label styleClass="inline">Faccio una scelta "ingorda", ma sicura: seleziono l’entità maggiore/minore ed elimino tutte le attività incompatibili.</Label>
 						<JFXDialogLayout styleClass="sublist">
 							<heading>
 								<Label>Approccio greedy, senza programmazione dinamica</Label>
@@ -77,29 +118,43 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
 	</Teoria>
 	<Quiz>
 		<Domanda>
-			<Testo>Are you greedy?</Testo>
-			<Suggerimento>Devi stare più attento se non sei greedy</Suggerimento>
-			<Opzione>1</Opzione>
-			<Opzione>2</Opzione>
-			<Opzione corretta="true">3</Opzione>
-			<Opzione>4</Opzione>
-		</Domanda>
-		<Domanda>
-			<Testo>Is this algorithm greedy?</Testo>
-			<Suggerimento>Non ci siamo ancora</Suggerimento>
-			<Opzione>a</Opzione>
-			<Opzione corretta="true">b</Opzione>
-			<Opzione>c</Opzione>
-			<Opzione>d</Opzione>
-		</Domanda>
-		<Domanda>
-			<Testo>What does greedy means?</Testo>
-			<Suggerimento>Studia la teoria</Suggerimento>
-			<Opzione>do</Opzione>
-			<Opzione>re</Opzione>
-			<Opzione>mi</Opzione>
-			<Opzione corretta="true">fa</Opzione>
-		</Domanda>
+	<Testo>E’ consigliabile adottare sin da subito un approccio greedy?</Testo>
+	<Suggerimento>Si se il problema è intuitivamente risolvibile tramite sequenze di scelte localmente ottime.</Suggerimento>
+	<Opzione>Si, sempre</Opzione>
+	<Opzione>No, mai</Opzione>
+	<Opzione corretta="true">Si, solo per problemi banali</Opzione>
+	<Opzione>No, se il problema implica l’uso di array o liste</Opzione>
+</Domanda>
+<Domanda>
+	<Testo>Spesso tecniche greedy si adottano in base ad intuizioni del programmatore:</Testo>
+	<Suggerimento>Si sta nella bravura ed esperienza del programmatore il riconoscere un problema affrontabile in modo “greedy” con costo ottimo.</Suggerimento>
+	<Opzione corretta="true">Vero</Opzione>
+	<Opzione>Falso</Opzione>
+</Domanda>
+<Domanda>
+	<Testo>Solitamente la scrittura della soluzione ingorda avviene in modo:</Testo>
+	<Suggerimento>La soluzione si costruisce riducendo il problema ad un sottoproblema, top-down.</Suggerimento>
+	<Opzione corretta="true">top-down</Opzione>
+	<Opzione>bottom-up</Opzione>
+	<Opzione>sicuramente in maniera ricorsiva</Opzione>
+	<Opzione>bottom-up, ricorsivamente</Opzione>
+</Domanda>
+<Domanda>
+	<Testo>E’ possibile adottare tecniche greedy a posteriori partendo da quale approccio:</Testo>
+	<Suggerimento>Siccome l’approccio è simile è possibile individuare una struttura favorevole ad una sequenza di scelte “greedy” anche partendo da una soluzione con PD.</Suggerimento>
+	<Opzione corretta="true">PD</Opzione>
+	<Opzione>Ricerca Locale</Opzione>
+	<Opzione>Divide et Impera</Opzione>
+	<Opzione>Backtracking</Opzione>
+</Domanda>
+<Domanda>
+	<Testo>Qual è il vantaggio di un approccio greedy rispetto ad uno a PD?</Testo>
+	<Suggerimento>Spesso non è necessario analizzare tutti i possibili valori di un problema.</Suggerimento>
+	<Opzione corretta="true" >Lo spazio di soluzione</Opzione>
+	<Opzione>Il tempo di soluzione</Opzione>
+	<Opzione>La terminazione certa</Opzione>
+	<Opzione>Risalta le skill del programmatore</Opzione>
+</Domanda>
 	</Quiz>
 </Lezione>
 <Lezione>
@@ -137,6 +192,22 @@ Non sempre esiste un algoritmo greedy che trovi la soluzione ottima di un qualsi
             <Opzione corretta="true">Entrambi</Opzione>
             <Opzione> Nessuna delle due </Opzione>
         </Domanda>
+        <Domanda>
+            <Testo>Qual è la complessità dell'algoritmo del resto se
+                l'array coins non è ordinato?</Testo>
+            <Suggerimento> La complessità è O(nlog(n)) per via della necessità di ordinare l'array.</Suggerimento>
+            <Opzione corretta = "true"> O(nlog(n)) </Opzione>
+            <Opzione> O(n) </Opzione>
+            <Opzione> O(log(n)) </Opzione>
+            <Opzione> O(n^2) </Opzione>
+        </Domanda>
+        <Domanda>
+            <Testo> Avere l'array coins ordinato è importante ai fini del metodo greedy e della complessità dell'algoritmo? </Testo>
+            <Suggerimento> Sì, se l'array non fosse già ordinato non si procederebbe secondo le linee guida del metodo greedy che prevede un ordinamento iniziale degli oggetti in base alla loro "appetibilità". Inoltre, se l'array è già ordinato la complessità scende a O(n).</Suggerimento>
+            <Opzione> Influisce solo sulla correttezza del metodo </Opzione>
+            <Opzione> Influisce solo sulla complessità </Opzione>
+            <Opzione corretta = "true"> Sì, è importante per entrambe </Opzione>
+            <Opzione> No, non è importante per nessuna delle due </Opzione>
 	</Quiz>
 </Lezione>
 </root>
