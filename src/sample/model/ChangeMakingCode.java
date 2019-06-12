@@ -43,6 +43,6 @@ public class ChangeMakingCode {
             }
         }
         java.util.Arrays.fill(solution, j, solution.length, 0);
-        System.out.println(java.util.Arrays.toString(solution));    
+        //System.out.println(java.util.Arrays.toString(solution));
     }
 }

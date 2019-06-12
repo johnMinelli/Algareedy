@@ -212,8 +212,8 @@ public class ChangeMakingController implements Initializable {
         for(Integer i = 0; i < numOfElems; i++) {
             valueOfCoins = valueOfCoins + Integer.parseInt(array[i].getText());
         }
-        System.out.println(change.toString());
-        System.out.println(valueOfCoins.toString());
+        //System.out.println(change.toString());
+        //System.out.println(valueOfCoins.toString());
         if(Objects.equals(change, valueOfCoins)) {
             res = true;
         }

@@ -210,7 +210,7 @@ public class Controller {
         switchIconBehaviour(Const.ANY);
         toggleNav(navPluginsWin, navPluginsMac);
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/sample/view/Home.fxml"));
             contentPane.setCenter((AnchorPane)loader.load());
         }catch (IOException io){
             io.printStackTrace();
@@ -236,7 +236,7 @@ public class Controller {
         switchIconBehaviour(Const.ANY);
         toggleNav(navAboutWin, navAboutMac);
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/About.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/sample/view/About.fxml"));
             contentPane.setCenter((AnchorPane)loader.load());
         }catch (IOException io){
             io.printStackTrace();
@@ -247,7 +247,7 @@ public class Controller {
         switchIconBehaviour(Const.ANY);
         toggleNav(navSettingsWin, navSettingsMac);
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Settings.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/sample/view/Settings.fxml"));
             contentPane.setCenter((AnchorPane)loader.load());
         }catch (IOException io){
             io.printStackTrace();
